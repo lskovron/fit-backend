@@ -34,13 +34,13 @@ if ( ! function_exists( 'aa_enqueue_styles' ) ) {
 
 		// Enqueue Child theme's stylesheet.
 		// Setting 'parent-style' as a dependency will ensure that the child theme stylesheet loads after it.
-		wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( $parent_style ) );
+		wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( $parent_style ), 1.345 );
 
 		if(is_page(49)) {
 			wp_enqueue_script( 'highcharts', 'https://code.highcharts.com/highcharts.js');
 			wp_enqueue_script( 'highcharts-variable-pie', 'https://code.highcharts.com/modules/variable-pie.js', array('jquery','highcharts'));
 			wp_enqueue_script( 'highcharts-exporting', 'https://code.highcharts.com/modules/exporting.js', array('jquery','highcharts'));
-			wp_enqueue_script( 'ajax-post', get_stylesheet_directory_uri() . '/scripts.js', array('jquery','highcharts','highcharts-variable-pie','highcharts-exporting'), 1.1);
+			wp_enqueue_script( 'ajax-post', get_stylesheet_directory_uri() . '/scripts.js', array('jquery','highcharts','highcharts-variable-pie','highcharts-exporting'), 1.8);
 		}
 	}
 }
@@ -190,31 +190,26 @@ add_filter ( 'manage_edit-fit-submission_columns', 'set_custom_edit_fit_submissi
 add_action ( 'manage_fit-submission_posts_custom_column', 'custom_fit_submission_column', 10, 2 );
 
 function set_custom_edit_fit_submission_columns($columns) {
-	// unset ( $columns ['cb'] );
 	unset ( $columns ['title'] );
-	// unset ( $columns ['date'] );
-	// $columns [DripFollowersConstants::COL_ORDER_CUSTOMER] = __ ( 'Customer' );
-	// $columns [DripFollowersConstants::COL_ORDER_CONTACT_EMAIL] = __ ( 'Contact Email' );
-	// $columns [DripFollowersConstants::COL_ORDER_SERVICE] = __ ( 'Service' );
-	// $columns [DripFollowersConstants::COL_ORDER_PACK] = __ ( 'Pack' );
-	// $columns [DripFollowersConstants::COL_ORDER_WITH_UPSELL] = __ ( 'Upsell' );
-	// $columns [DripFollowersConstants::COL_ORDER_NUMBER] = __ ( 'Number' );
-	// $columns [DripFollowersConstants::COL_ORDER_INITIAL_COUNT] = __ ( 'Init. Count' );
-	// $columns [DripFollowersConstants::COL_ORDER_PROGRESS] = __ ( 'Progress' );
-	// $columns [DripFollowersConstants::COL_ORDER_TARGET] = __ ( 'Target' );
-	// $columns [DripFollowersConstants::COL_ORDER_PROVIDER] = __ ( 'Provider' );
-	// $columns [DripFollowersConstants::COL_ORDER_PAYMENT_STATUS] = __ ( 'Payment Status' );
-	// $columns [DripFollowersConstants::COL_ORDER_PAYMENT_AMOUNT] = __ ( 'Payment Amount' );
-	// $columns [DripFollowersConstants::COL_ORDER_TASK_ID] = __ ( 'API Task ID' );
-	// $columns [DripFollowersConstants::COL_ORDER_DATE] = __ ( 'Date' );
-	// $columns [DripFollowersConstants::COL_ORDER_REMARKS] = __ ( 'Remarks' );
+	$columns ['participant'] = 'Name';
+	$columns ['email'] = 'Email';
+	$columns ['gender'] = 'Gender';
+	$columns ['age'] = 'Age';
+	$columns ['income'] = 'Income';
+	$columns ['height'] = 'Height';
+	$columns ['weight'] = 'Weight';
+	$columns ['occupation'] = 'Occupation';
+	$columns ['marital'] = 'Marital Status';
+
+	$columns ['overall-score'] = 'Overall';
+	$columns ['balance-score'] = 'Balance';
 	$columns ['cognitive-score'] = 'Cognitive';
 	$columns ['emotional-score'] = 'Emotional';
 	$columns ['physical-score'] = 'Physical';
 	$columns ['financial-score'] = 'Financial';
 	$columns ['spiritual-score'] = 'Spiritual';
 
-	$columns ['learning-strategies'] = '(C) Learning Strategies';
+	$columns ['learning-strategies'] = '(C) Learning Strategies & Memory';
 	$columns ['intellectual-engagement'] = '(C) Intellectual Engagement';
 	$columns ['effort-control'] = '(C) Effort Control';
 	$columns ['attention'] = '(C) Attention';
@@ -222,24 +217,32 @@ function set_custom_edit_fit_submission_columns($columns) {
 	$columns ['social-cognition'] = '(C) Social Cognition';
 
 	$columns ['current-emotional-health'] = '(E) Current Emotional Health';
-	$columns ['self-compassion'] = '(E) Self Compassion';
-	$columns ['emotional-self-awareness'] = '(E) Emotional Self Awareness';
+	$columns ['self-compassion'] = '(E) Self Compassion & Emotional Awareness';
 	$columns ['stress-resilience'] = '(E) Stress Resilience';
 	$columns ['gratitude-positivity'] = '(E) Gratitude and Positivity';
-	$columns ['social-support'] = '(E) Social Support';
+	$columns ['social-engagement'] = '(E) Social Engagement';
+	$columns ['mindset'] = '(E) Mindset';
 
-	$columns ['bmi'] = '(P) BMI';
-	$columns ['nutritional-implementation'] = '(P) Nutritional Implementation';
-	$columns ['nutritional-knowledge'] = '(P) Nutritional Knowledge';
-	$columns ['activity-level'] = '(P) Activity Level';
+	$columns ['aerobic-activity'] = '(P) Aerobic Activity';
+	$columns ['nutrition'] = '(P) Nutrition';
+	$columns ['nutrition-knowledge'] = '(P) Nutritional Knowledge';
+	$columns ['activity-level'] = '(P) Activity Levels';
 	$columns ['self-image'] = '(P) Self Image';
 	$columns ['sleep-habits'] = '(P) Sleep Habits';
-	$columns ['social-activity'] = '(P) Social Activity';
+	$columns ['strength-training'] = '(P) Strength Training';
 
-	$columns ['long-term'] = '(F) Long Term';
-	$columns ['short-term'] = '(F) Short Term';
-	$columns ['sadness'] = '(F) BMI';
-	$columns ['hapiness'] = '(F) Hapiness';
+	$columns ['long-term'] = '(F) Long Term Perspective';
+	$columns ['short-term'] = '(F) Short Term Perspective';
+	$columns ['reduce-sadness'] = '(F) Reduce Sadness';
+	$columns ['increase-hapiness'] = '(F) Increase Hapiness';
+	$columns ['non-pecuniary'] = '(F) Non-pecuniary';
+
+	$columns ['connection'] = '(S) Connection';
+	$columns ['compassion-empathy'] = '(S) Compassion and Empathy';
+	$columns ['forgiveness'] = '(S) Forgiveness';
+	$columns ['purpose'] = '(S) Purpose';
+	$columns ['presence'] = '(S) Presence';
+
 	return $columns;
 }
 
@@ -254,36 +257,57 @@ function create_new_submission($scores){
 	);
 	$id = wp_insert_post ( $order, true );
 	if (! is_wp_error ( $id )) {
+		add_post_meta ( $id, 'overall-score', $scores['overall-score'] );
+		add_post_meta ( $id, 'balance-score', $scores['balance-score'] );
 		add_post_meta ( $id, 'cognitive-score', $scores['cognitive-score'] );
 		add_post_meta ( $id, 'emotional-score', $scores['emotional-score'] );
 		add_post_meta ( $id, 'physical-score', $scores['physical-score'] );
 		add_post_meta ( $id, 'financial-score', $scores['financial-score'] );
 		add_post_meta ( $id, 'spiritual-score', $scores['spiritual-score'] );
 
-		add_post_meta ( $id, 'learning-strategies', $scores['learning-strategies'] );
-		add_post_meta ( $id, 'intellectual-engagement', $scores['intellectual-engagement'] );
-		add_post_meta ( $id, 'effort-control', $scores['effort-control'] );
-		add_post_meta ( $id, 'attention', $scores['attention'] );
-		add_post_meta ( $id, 'autonomy', $scores['autonomy'] );
-		add_post_meta ( $id, 'social-cognition', $scores['social-cognition'] );
-
-		add_post_meta ( $id, 'current-emotional-health', $scores['current-emotional-health'] );
-		add_post_meta ( $id, 'self-compassion', $scores['self-compassion'] );
-		add_post_meta ( $id, 'emotional-self-awareness', $scores['emotional-self-awareness'] );
-		add_post_meta ( $id, 'stress-resilience', $scores['stress-resilience'] );
-		add_post_meta ( $id, 'social-support', $scores['social-support'] );
-		add_post_meta ( $id, 'gratitude-positivity', $scores['gratitude-positivity'] );
-
-		add_post_meta ( $id, 'bmi', $scores['bmi'] );
-		add_post_meta ( $id, 'nutritional-implementation', $scores['nutritional-implementation'] );
-		add_post_meta ( $id, 'nutritional-knowledge', $scores['nutritional-knowledge'] );
-		add_post_meta ( $id, 'activity-level', $scores['activity-level'] );
-		add_post_meta ( $id, 'self-image', $scores['self-image'] );
-		add_post_meta ( $id, 'social-activity', $scores['social-activity'] );
-		add_post_meta ( $id, 'long-term', $scores['long-term'] );
-		add_post_meta ( $id, 'short-term', $scores['short-term'] );
-		add_post_meta ( $id, 'hapiness', $scores['hapiness'] );
-		add_post_meta ( $id, 'sadness', $scores['sadness'] );
+		add_post_meta ( $id, 'participant', $scores ['participant'] );
+		add_post_meta ( $id, 'email', $scores ['email'] );
+		add_post_meta ( $id, 'gender', $scores ['gender'] );
+		add_post_meta ( $id, 'age', $scores ['age'] );
+		add_post_meta ( $id, 'income', $scores ['income'] );
+		add_post_meta ( $id, 'height', $scores ['height'] );
+		add_post_meta ( $id, 'weight', $scores ['weight'] );
+		add_post_meta ( $id, 'occupation', $scores ['occupation'] );
+		add_post_meta ( $id, 'marital', $scores ['marital'] );
+	
+		add_post_meta ( $id, 'learning-strategies', $scores ['learning-strategies'] );
+		add_post_meta ( $id, 'intellectual-engagement', $scores ['intellectual-engagement'] );
+		add_post_meta ( $id, 'effort-control', $scores ['effort-control'] );
+		add_post_meta ( $id, 'attention', $scores ['attention'] );
+		add_post_meta ( $id, 'autonomy', $scores ['autonomy'] );
+		add_post_meta ( $id, 'social-cognition', $scores ['social-cognition'] );
+	
+		add_post_meta ( $id, 'current-emotional-health', $scores ['current-emotional-health'] );
+		add_post_meta ( $id, 'self-compassion', $scores ['self-compassion'] );
+		add_post_meta ( $id, 'stress-resilience', $scores ['stress-resilience'] );
+		add_post_meta ( $id, 'gratitude-positivity', $scores ['gratitude-positivity'] );
+		add_post_meta ( $id, 'social-engagement', $scores ['social-engagement'] );
+		add_post_meta ( $id, 'mindset', $scores ['mindset'] );
+	
+		add_post_meta ( $id, 'aerobic-activity', $scores ['aerobic-activity'] );
+		add_post_meta ( $id, 'nutrition', $scores ['nutrition'] );
+		add_post_meta ( $id, 'nutrition-knowledge', $scores ['nutrition-knowledge'] );
+		add_post_meta ( $id, 'activity-level', $scores ['activity-level'] );
+		add_post_meta ( $id, 'self-image', $scores ['self-image'] );
+		add_post_meta ( $id, 'sleep-habits', $scores ['sleep-habits'] );
+		add_post_meta ( $id, 'strength-training', $scores ['strength-training'] );
+	
+		add_post_meta ( $id, 'long-term', $scores ['long-term'] );
+		add_post_meta ( $id, 'short-term', $scores ['short-term'] );
+		add_post_meta ( $id, 'reduce-sadness', $scores ['reduce-sadness'] );
+		add_post_meta ( $id, 'increase-hapiness', $scores ['increase-hapiness'] );
+		add_post_meta ( $id, 'non-pecuniary', $scores ['non-pecuniary'] );
+	
+		add_post_meta ( $id, 'connection', $scores ['connection'] );
+		add_post_meta ( $id, 'compassion-empathy', $scores ['compassion-empathy'] );
+		add_post_meta ( $id, 'forgiveness', $scores ['forgiveness'] );
+		add_post_meta ( $id, 'purpose', $scores ['purpose'] );
+		add_post_meta ( $id, 'presence', $scores ['presence'] );
 		return $id;
 	} else {
 		var_dump($id);
@@ -293,6 +317,8 @@ function create_new_submission($scores){
 //add post adax
 add_action ( 'wp_ajax_submit_results', 'submit_results_callback'  );
 add_action ( 'wp_ajax_nopriv_submit_results', 'submit_results_callback' );
+add_action ( 'wp_ajax_send_email', 'send_email_callback'  );
+add_action ( 'wp_ajax_nopriv_send_email', 'send_email_callback' );
 add_action ( 'wp_head', 'create_ajax_base_info' );
 
 function create_ajax_base_info() {
@@ -302,6 +328,10 @@ function create_ajax_base_info() {
 		var SubmitResultsAjax = {
 			"ajaxurl": "<?php echo admin_url('admin-ajax.php') ?>",
 			"submit_results_nonce": "<?php echo wp_create_nonce('submit_results_nonce') ?>"
+		};
+		var SendEmailAjax = {
+			"ajaxurl": "<?php echo admin_url('admin-ajax.php') ?>",
+			"send_email_nonce": "<?php echo wp_create_nonce('send_email_nonce') ?>"
 		};
 	</script>
 	<?php
@@ -317,6 +347,40 @@ function submit_results_callback() {
 	create_new_submission($scores);
 
 	echo 'submission posted';
+
+	die();
+}
+
+require_once dirname( __FILE__ ) . '/email.php';
+
+function send_email_callback() {
+	$nonce = $_POST ['send_email_nonce'];
+	if (! wp_verify_nonce ( $nonce, 'send_email_nonce' )) {
+		die ();
+	}
+	$data = $_POST['args'];
+
+	$email_html = return_email_template(
+		$data["highest-score"],
+		$data["highest-dim"],
+		$data["lowest-score"],
+		$data["lowest-dim"],
+		$data["overall"],
+		$data["email"],
+		$data["participant"],
+		$data["balance"]
+	);
+
+
+	$to = $data["email"];
+	$subject = 'FIT Assessment Results - '.$data["participant"];
+	$body = $email_html;
+	$headers = array('Content-Type: text/html; charset=UTF-8');
+ 
+	$sent_email = wp_mail( $to, $subject, $body, $headers );
+
+	echo $sent_email;
+
 
 	die();
 }

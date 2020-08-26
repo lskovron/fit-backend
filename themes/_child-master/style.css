@@ -12,3 +12,131 @@
 /* ----------------------------------------------------------------------------
  * Child Theme Style.css styles begin here!
  * ------------------------------------------------------------------------- */
+
+
+/* FONTS */
+@font-face { 
+    font-family: Xaloc; 
+    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/XalocText.otf); 
+    font-weight: normal; 
+}
+@font-face { 
+    font-family: Xaloc; 
+    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/XalocText-Italic.otf); 
+    font-style: italic; 
+}
+@font-face { 
+    font-family: Xaloc; 
+    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/XalocText-Bold.otf); 
+    font-weight: 700; 
+}
+@font-face { 
+    font-family: Xaloc; 
+    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/XalocText-Heavy.otf); 
+    font-weight: 900; 
+}
+
+@font-face { 
+    font-family: Xaloc; 
+    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/XalocText-BoldItalic.otf); 
+    font-style: italic; 
+    font-weight: 700; 
+}
+@font-face { 
+    font-family: Xaloc; 
+    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/XalocText-HeavyItalic.otf); 
+    font-style: italic; 
+    font-weight: 900; 
+}
+
+@font-face { 
+    font-family: DIN Pro; 
+    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/DINPro400.otf); 
+    font-weight: normal; 
+}
+@font-face { 
+    font-family: DIN Pro; 
+    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/DINProItalic400.otf); 
+    font-style: italic; 
+}
+@font-face { 
+    font-family: DIN Pro; 
+    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/DINProBold700.otf); 
+    font-weight: 700; 
+}
+@font-face { 
+    font-family: DIN Pro; 
+    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/DINProBlack900.otf); 
+    font-weight: 900; 
+}
+
+@font-face { 
+    font-family: DIN Pro; 
+    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/DINProBoldItalic700.otf); 
+    font-style: italic; 
+    font-weight: 700; 
+}
+@font-face { 
+    font-family: DIN Pro; 
+    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/DINProBlackItalic900.otf); 
+    font-style: italic; 
+    font-weight: 900; 
+}
+
+body { 
+    font-size: 16px; 
+    font-family: "DIN Pro"; 
+    color: #576a7c;
+    background: #efefef;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Xaloc";
+    margin: .25em 0 .25em;
+    color: #576a7c;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: 700;
+}
+h2 {
+    font-size: 2.5em;
+    font-weight: 700;
+}
+h3 {
+    font-size: 2em;
+    font-weight: 700;
+}
+h4 {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+p {
+    font-size: 1em;
+    margin-bottom: 8px;
+}
+
+#logo {
+    width:100%;
+    max-width: 350px;
+}
+
+#header {
+    text-align:center;
+    margin-bottom:15px
+}
+
+#page-container {
+    max-width:700px;
+    width:100%;
+    padding: 40px;
+    margin:30px auto;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.result-section {
+    margin: 20px 0;
+}

@@ -6,15 +6,8 @@
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-<div id="wrapper" class="hfeed">
+<div id="page-container">
 <header id="header">
-<div id="branding">
-<div id="site-title">
-<?php if ( is_front_page() || is_home() || is_front_page() && is_home() ) { echo '<h1>'; } ?>
-<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
-<?php if ( is_front_page() || is_home() || is_front_page() && is_home() ) { echo '</h1>'; } ?>
-</div>
-<div id="site-description"><?php bloginfo( 'description' ); ?></div>
-</div>
+    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/logo.png" alt="fit logo" id="logo" />
 </header>
-<div id="container">
+<div>

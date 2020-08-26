@@ -136,8 +136,29 @@ jQuery(document).ready(function(){
                     break;
                 }
             }
-            wpPostFormat[property.substring(2)] = parseFloat(urlObj[property]);
+            if(property.charAt(1) === '-'){
+                //scores
+                wpPostFormat[property.substring(2)] = parseFloat(urlObj[property]);
+            } else {
+                //demo
+                wpPostFormat[property] = urlObj[property];
+            }
         }
+
+        for( var key in results ){
+            if ( Object.entries(results[key]).length === 0 ){
+                delete results[key];
+            }
+        }
+
+        let overallScores = {};
+        Object.keys(wpPostFormat).map((key)=>{
+            if(key.includes('score') && !key.includes('overall') && !key.includes('balance')){
+                overallScores[key] = wpPostFormat[key]
+            }
+        })
+
+        wpPostFormat['balance-score'] = getBalanceScore(overallScores);
 
         return {
             highchartsRaw: results,
@@ -154,27 +175,35 @@ jQuery(document).ready(function(){
         let colors = [];
     
         const getColorArray = dimension => {
-          const keys = Object.keys(results[dimension]);
-          const subCount = keys.length;
-          return COLORS[dimension].slice(-subCount);
+            if(results[dimension]){
+                const keys = Object.keys(results[dimension]);
+                const subCount = keys.length;
+                return COLORS[dimension].slice(-subCount);
+            } else {
+                return [];
+            }
         }
     
         const formatData = dimensionResults => {
-          const keys = Object.keys(dimensionResults);
-          const subCount = keys.length;
-    
-          const dataArray = keys.map((sub)=>{
-            let score = dimensionResults[sub];
-            let label = capitalizeWords(sub.replace(/\-/g,' '));
-            if(label === 'Bmi') label = 'BMI'
-            return {
-              name: label,
-              y: 72/subCount,
-              z: score
-            }
-          })
+            if(dimensionResults){
+                const keys = Object.keys(dimensionResults);
+                const subCount = keys.length;
           
-          return dataArray;
+                const dataArray = keys.map((sub)=>{
+                  let score = dimensionResults[sub];
+                  let label = capitalizeWords(sub.replace(/\-/g,' '));
+                  if(label === 'Bmi') label = 'BMI'
+                  return {
+                    name: label,
+                    y: 72/subCount,
+                    z: score
+                  }
+                })
+                
+                return dataArray;
+            } else {
+                return [];
+            }
         }
         
         data = [
@@ -196,11 +225,6 @@ jQuery(document).ready(function(){
             data: data,
             colors: colors
         }
-    
-        // const newDataSet = Object.assign(initialOptions,{});
-        // newDataSet.series[0].data = data;
-        // newDataSet.colors = colors;
-        // setOptions(newDataSet);
     }
     
     const createSubmission = urlObj => {
@@ -263,13 +287,13 @@ jQuery(document).ready(function(){
 
         let overallScores = {};
         Object.keys(rootObj).map((key)=>{
-            if(key.includes('score') && !key.includes('overall')){
+            if(key.includes('score') && !key.includes('overall') && !key.includes('balance')){
                 overallScores[key] = rootObj[key]
             }
         })
 
         if(rootObj['overall-score']){
-            jQuery('#overall span').text(rootObj['overall-score'])
+            jQuery('#overall .total').text(rootObj['overall-score'])
         }
 
         const highest = Object.keys(overallScores).reduce((a, b) => {return overallScores[a] > overallScores[b] ? a : b });
@@ -287,15 +311,16 @@ jQuery(document).ready(function(){
         jQuery('#high-title span').text(`${capitalizeWords( highest.replace('-score','') ) } (${overallScores[highest]})`)
         jQuery('#low-title span').text(`${capitalizeWords( lowest.replace('-score','') ) } (${overallScores[lowest]})`)
 
-        const getBalanceScore = () => {
-            let obj = Object.assign({},overallScores);
-            delete obj['overall-score'];
-            let arr = Object.keys(obj).map((key)=>obj[key])
-            return (100-getStandardDeviation(arr)).toFixed(2);
-        }
+        jQuery('#balance span').text(`${getBalanceScore(overallScores)}%`);
+        jQuery('#email-address').text(rootObj['email']);
 
-        jQuery('#balance span').text(`${getBalanceScore()}%`);
+    }
 
+    const getBalanceScore = overallScores => {
+        let obj = Object.assign({},overallScores);
+        delete obj['overall-score'];
+        let arr = Object.keys(obj).map((key)=>obj[key])
+        return (100-getStandardDeviation(arr)).toFixed(2);
     }
 
     const getStandardDeviation  = array => {
@@ -304,13 +329,45 @@ jQuery(document).ready(function(){
         return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n) * (100/mean)
     }
 
+    const getEmailData = rootObj => {
+        let overallScores = {};
+        let emailData = {};
+
+        Object.keys(rootObj).map((key)=>{
+            if(key.includes('score') && !key.includes('overall') && !key.includes('balance')){
+                overallScores[key] = rootObj[key]
+            }
+        })
+
+        const highest = Object.keys(overallScores).reduce((a, b) => {return overallScores[a] > overallScores[b] ? a : b });
+        const lowest = Object.keys(overallScores).reduce((a, b) => {return overallScores[a] < overallScores[b] ? a : b });
+        const balance = getBalanceScore(overallScores);
+
+        emailData = {
+            overall: rootObj['overall-score'],
+            balance: balance,
+            email: rootObj['email'],
+            participant: rootObj['participant'],
+            'highest-score': rootObj[highest],
+            'highest-dim': highest.replace('-score',''),
+            'lowest-score': rootObj[lowest],
+            'lowest-dim': lowest.replace('-score',''),
+        } 
+
+        return emailData;
+        
+    }
+
     //execute functions
     const assessmentData = Object.fromEntries(new URLSearchParams(location.search));
-    if( assessmentData.hasOwnProperty('t-cognitive-score') ) {
+    const formatData = reformatUrlData(assessmentData);
+    const chartRaw = formatData.highchartsRaw;
+    const wpPostData = formatData.wpRaw;
+    const chartFormatted = generateChartData(chartRaw);
+    const emailData = getEmailData(wpPostData);
+
+    if( assessmentData.hasOwnProperty('t-overall-score') ) {
         //prepare data
-        const chartRaw = reformatUrlData(assessmentData).highchartsRaw;
-        const wpPostData = reformatUrlData(assessmentData).wpRaw;
-        const chartFormatted = generateChartData(chartRaw);
         
         const newDataSet = Object.assign(initialOptions,{});
         newDataSet.series[0].data = chartFormatted.data;
@@ -319,8 +376,6 @@ jQuery(document).ready(function(){
         //UI setup
         setupUi(wpPostData);
         Highcharts.chart('highcharts-container', newDataSet);
-        
-
 
         //create data entry
         if(assessmentData.hasOwnProperty('nodupe')){
@@ -329,7 +384,31 @@ jQuery(document).ready(function(){
         }
     }
 
+    //interactions
+    jQuery('#send-email').click(function(e){
+        e.preventDefault();
+
+        var data = {
+            action: 'send_email',
+            args: emailData,
+            send_email_nonce: SendEmailAjax.send_email_nonce
+        };
+        
+        // $loader.show();
+        var jqxhr = jQuery.post(SendEmailAjax.ajaxurl, data);
+        jqxhr.done(function(response) {
+            if( response ) {
+                console.log(response);
+            }
+            else {
+                // showErrorBlock();
+            }
+            }).fail(function() {
+                // showErrorBlock();
+            }).always(function() {
+                // $loader.hide();
+            });
+    })
+
 })
-
-
 
