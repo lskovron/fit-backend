@@ -34,7 +34,7 @@ if ( ! function_exists( 'aa_enqueue_styles' ) ) {
 
 		// Enqueue Child theme's stylesheet.
 		// Setting 'parent-style' as a dependency will ensure that the child theme stylesheet loads after it.
-		wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( $parent_style ), 1.345 );
+		wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( $parent_style ), 1.9 );
 
 		if(is_page(49)) {
 			wp_enqueue_script( 'highcharts', 'https://code.highcharts.com/highcharts.js');
