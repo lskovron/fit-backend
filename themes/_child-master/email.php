@@ -8,7 +8,8 @@ function return_email_template(
         $overall,
         $email,
         $participant,
-        $balance
+        $balance,
+        $urlString
     ){
 $email_html = '';
 // ob_start();
@@ -383,8 +384,9 @@ $email_html .= '
                       <td>';
 
 $email_html .= '
-                      <h1 style="text-align:center">Overall FIT Score:<br><span class="total" style="color:#1e7ce1">'.$overall.'</span><span style="font-weight:300"> / </span><span style="color:#0140c9">20</span></h1>
-                      
+                      <h1 style="text-align:center">Overall FIT Score:<br><span class="total" style="color:#1e7ce1">'.$overall.'</span><span style="font-weight:300"> / </span><span style="color:#0140c9">20</span></h1>';
+$email_html .= '<p style="text-align:center"><a href="http://results.thefitexperience.com/results/'.$urlString.'">View my results as a Circumplex</a></p>';
+$email_html .= '      
                         <h4>FIT Balance Score: <span>'.$balance.'</span></h4>'.get_field('balance_score_explanation',49).'</h4>
                         <h4 id="high-title">You scored highest in the <span>'.ucfirst($highest_dim).' ('.$highest_score.')</span> dimension</h4>';
 
@@ -449,13 +451,7 @@ $email_html .= '
               <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td class="content-block">
-                    <span class="apple-link">Company Inc, 3 Abbey Road, San Francisco CA 94102</span>
-                    <br> Don\'t like these emails? <a href="http://i.imgur.com/CScmqnj.gif">Unsubscribe</a>.
-                  </td>
-                </tr>
-                <tr>
-                  <td class="content-block powered-by">
-                    Powered by <a href="http://htmlemail.io">HTMLemail</a>.
+                    <span class="apple-link">@2020 The FIT Experience</span>
                   </td>
                 </tr>
               </table>

@@ -17,68 +17,68 @@
 /* FONTS */
 @font-face { 
     font-family: Xaloc; 
-    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/XalocText.otf); 
+    src: url(/wp-content/themes/_child-master/fonts/XalocText.otf); 
     font-weight: normal; 
 }
 @font-face { 
     font-family: Xaloc; 
-    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/XalocText-Italic.otf); 
+    src: url(/wp-content/themes/_child-master/fonts/XalocText-Italic.otf); 
     font-style: italic; 
 }
 @font-face { 
     font-family: Xaloc; 
-    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/XalocText-Bold.otf); 
+    src: url(/wp-content/themes/_child-master/fonts/XalocText-Bold.otf); 
     font-weight: 700; 
 }
 @font-face { 
     font-family: Xaloc; 
-    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/XalocText-Heavy.otf); 
+    src: url(/wp-content/themes/_child-master/fonts/XalocText-Heavy.otf); 
     font-weight: 900; 
 }
 
 @font-face { 
     font-family: Xaloc; 
-    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/XalocText-BoldItalic.otf); 
+    src: url(/wp-content/themes/_child-master/fonts/XalocText-BoldItalic.otf); 
     font-style: italic; 
     font-weight: 700; 
 }
 @font-face { 
     font-family: Xaloc; 
-    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/XalocText-HeavyItalic.otf); 
+    src: url(/wp-content/themes/_child-master/fonts/XalocText-HeavyItalic.otf); 
     font-style: italic; 
     font-weight: 900; 
 }
 
 @font-face { 
     font-family: DIN Pro; 
-    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/DINPro400.otf); 
+    src: url(/wp-content/themes/_child-master/fonts/DINPro400.otf); 
     font-weight: normal; 
 }
 @font-face { 
     font-family: DIN Pro; 
-    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/DINProItalic400.otf); 
+    src: url(/wp-content/themes/_child-master/fonts/DINProItalic400.otf); 
     font-style: italic; 
 }
 @font-face { 
     font-family: DIN Pro; 
-    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/DINProBold700.otf); 
+    src: url(/wp-content/themes/_child-master/fonts/DINProBold700.otf); 
     font-weight: 700; 
 }
 @font-face { 
     font-family: DIN Pro; 
-    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/DINProBlack900.otf); 
+    src: url(/wp-content/themes/_child-master/fonts/DINProBlack900.otf); 
     font-weight: 900; 
 }
 
 @font-face { 
     font-family: DIN Pro; 
-    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/DINProBoldItalic700.otf); 
+    src: url(/wp-content/themes/_child-master/fonts/DINProBoldItalic700.otf); 
     font-style: italic; 
     font-weight: 700; 
 }
 @font-face { 
     font-family: DIN Pro; 
-    src: url(http://results.thefitexperience.com/wp-content/themes/_child-master/fonts/DINProBlackItalic900.otf); 
+    src: url(/wp-content/themes/_child-master/fonts/DINProBlackItalic900.otf); 
     font-style: italic; 
     font-weight: 900; 
 }
@@ -164,4 +164,10 @@ button:focus {
     box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
     background-color: #d5d5d5;
     cursor: pointer;
+}
+
+
+/* HIGHCHARTS */
+.highcharts-exporting-group {
+    transform: translate(12px, -13px);
 }

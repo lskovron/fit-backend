@@ -10,8 +10,11 @@ if(have_posts()): while(have_posts()): the_post();
 <div id="overall" style="text-align:center"><h1>Overall FIT Score:<br><span class="total" style="color:#1e7ce1"></span>/<span style="color:#0140c9">20</span></h1></div>
 
 <div id="highcharts-container"></div>
+<div style="text-align:center;padding:20px 0 30px;">
+    <button id="export-chart">Download my FIT chart</button>
+</div>
 
-<div id="balance" class="result-section"><h4>FIT Balance Score: <span class="balance"></span></h4>
+<div class="result-section"><h4>FIT Balance Score: <span id="balance"></span></h4>
 <?php the_field('balance_score_explanation'); ?>
 </div>
 
@@ -39,7 +42,10 @@ if($hl): ?>
 
 <div>
 <h4>Send results to <span id="email-address"></span></h4>
-<button id="send-email">Send email</button>
+<div style="text-align:center;padding:15px 0;">
+    <button id="send-email">Email me my results!</button>
+    <p id="thank-you-email" style="padding-top:10px;"></p>
+</div>
 </div>
 
 <?php

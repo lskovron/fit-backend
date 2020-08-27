@@ -2,65 +2,58 @@ jQuery(document).ready(function(){
 
     //constants
     const COLORS = {
-        cognitive: [ //blues
-            "#23239a",
-            "#3838a4", 
-            "#4e4eae",
-            "#6565b8", 
-            "#6565b8", 
-            "#6565b8", 
-            "#6565b8", 
-            "#9191cc", 
-            "#bdbde0"
+        cognitive: [ //oranges
+            "#ff3a00",
+            "#ff4a00",
+            "#ff5a00",
+            "#ff6a00",
+            "#ff7e00",
+            "#ff9400",
+            "#ffb100",
+            "#ffd200"
         ],
-        emotional: [ //reds
-            "#ee2020",
-            "#ef3636",
-            "#f14c4c",
-            "#f36262",
-            "#f36262",
-            "#f36262",
-            "#f36262",
-            "#f47979",
-            "#f68f8f",
+        emotional: [ //blues
+            "#00296f",
+            "#00396f",
+            "#004980",
+            "#005f92",
+            "#007aa9",
+            "#009cc1",
+            "#08c6de"
         ],
-        physical: [ //oranges
-            "#f98525",
-            "#f9913a",
-            "#fa9d50",
-            "#faa966",
-            "#fbb57c",
-            "#fcc292",
-            "#fcc292",
-            "#fcc292",
-            "#fccea7",
+        physical: [ //reds
+            "#a11500",
+            "#b51800",
+            "#c01a00",
+            "#cb1c00",
+            "#d72100",
+            "#e43304",
+            "#f26b3e"
         ],
         financial: [ //greens
-            "#3d8b31",
-            "#509645",
-            "#63a25a",
-            "#63a25a",
-            "#63a25a",
-            "#63a25a",
-            "#77ad6e"
+            "#004c00",
+            "#005d00",
+            "#006e00",
+            "#008200",
+            "#009906",
+            "#1cb423",
+            "#68d566"
         ],
-        spiritual: [ //turquoise
-            "#40e0d0",
-            "#66e6d9",
-            "#8cece2",
-            "#9fefe7",
-            "#c5f5f0",
-            "#c5f5f0",
-            "#c5f5f0",
-            "#c5f5f0",
-            "#d8f8f5"
+        spiritual: [ //blue
+            "#01188d",
+            "#02188d",
+            "#071d9c",
+            "#1224ac",
+            "#2733be",
+            "#4d52d1",
+            "#8e8ee7"
         ]
     }
 
     let initialOptions = {
         chart: {
           type: "variablepie",
-          margin: [0, 200, 0, 0],
+          margin: [0, 200, 0, 0]
         },
       
         title: {
@@ -71,6 +64,11 @@ jQuery(document).ready(function(){
           align: "right",
           verticalAlign: "middle",
           layout: "vertical",
+          rtl: true,
+          labelFormat: '{name} <span style="opacity: 0.4;">({z})</span>',
+          itemStyle: {
+              fontSize:"11px"
+          }
         },
         plotOptions: {
           series: {
@@ -79,7 +77,6 @@ jQuery(document).ready(function(){
               enabled: false,
             },
             showInLegend: true,
-            size: "100%",
             point: {
               events: {
                 legendItemClick: function() {
@@ -102,7 +99,26 @@ jQuery(document).ready(function(){
               valueDecimals: 2
             }
           }
-        ]
+        ],
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    chart: {
+                        margin: [0, 0, 300, 0],
+                        height: 600
+                    },
+                    legend: {
+                        align: 'center',
+                        verticalAlign: 'bottom',
+                        layout: 'horizontal'
+                    }
+                }
+            }]
+        }
     };
 
     //define functions
@@ -251,7 +267,7 @@ jQuery(document).ready(function(){
             });
     }
 
-    const updateQueryStringParam = (key, value) => {
+    const updateQueryStringParam = (key, value, saveAs = false) => {
 
         var baseUrl = [location.protocol, '//', location.host, location.pathname].join(''),
             urlQueryString = document.location.search,
@@ -280,6 +296,7 @@ jQuery(document).ready(function(){
             }
     
         }
+        if( saveAs ) return params;
         window.history.replaceState({}, "", baseUrl + params);
     };
 
@@ -311,7 +328,7 @@ jQuery(document).ready(function(){
         jQuery('#high-title span').text(`${capitalizeWords( highest.replace('-score','') ) } (${overallScores[highest]})`)
         jQuery('#low-title span').text(`${capitalizeWords( lowest.replace('-score','') ) } (${overallScores[lowest]})`)
 
-        jQuery('#balance span').text(`${getBalanceScore(overallScores)}%`);
+        jQuery('#balance').text(`${getBalanceScore(overallScores)}%`);
         jQuery('#email-address').text(rootObj['email']);
 
     }
@@ -364,19 +381,23 @@ jQuery(document).ready(function(){
     const chartRaw = formatData.highchartsRaw;
     const wpPostData = formatData.wpRaw;
     const chartFormatted = generateChartData(chartRaw);
-    const emailData = getEmailData(wpPostData);
-
+    let emailData = getEmailData(wpPostData);
+    emailData.urlString = updateQueryStringParam( 'nodupe', null, true );
+    console.log(emailData);
+    
     if( assessmentData.hasOwnProperty('t-overall-score') ) {
         //prepare data
         
         const newDataSet = Object.assign(initialOptions,{});
         newDataSet.series[0].data = chartFormatted.data;
         newDataSet.colors = chartFormatted.colors;
-
+        
         //UI setup
         setupUi(wpPostData);
-        Highcharts.chart('highcharts-container', newDataSet);
-
+        const chart = Highcharts.chart('highcharts-container', newDataSet);
+        jQuery('#export-chart').click(function(){
+            chart.exportChart();
+        })
         //create data entry
         if(assessmentData.hasOwnProperty('nodupe')){
             createSubmission(wpPostData);
@@ -387,6 +408,9 @@ jQuery(document).ready(function(){
     //interactions
     jQuery('#send-email').click(function(e){
         e.preventDefault();
+
+        jQuery('#send-email').prop('disabled',true);
+        jQuery('#send-email').text('Sending...');
 
         var data = {
             action: 'send_email',
@@ -399,6 +423,9 @@ jQuery(document).ready(function(){
         jqxhr.done(function(response) {
             if( response ) {
                 console.log(response);
+                jQuery('#send-email').prop('disabled',false);
+                jQuery('#send-email').text('Re-send email');
+                jQuery('#thank-you-email').text("Your email has been send!");
             }
             else {
                 // showErrorBlock();

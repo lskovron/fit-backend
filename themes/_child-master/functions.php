@@ -34,13 +34,13 @@ if ( ! function_exists( 'aa_enqueue_styles' ) ) {
 
 		// Enqueue Child theme's stylesheet.
 		// Setting 'parent-style' as a dependency will ensure that the child theme stylesheet loads after it.
-		wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( $parent_style ), 1.9 );
+		wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( $parent_style ), 3.0 );
 
 		if(is_page(49)) {
 			wp_enqueue_script( 'highcharts', 'https://code.highcharts.com/highcharts.js');
 			wp_enqueue_script( 'highcharts-variable-pie', 'https://code.highcharts.com/modules/variable-pie.js', array('jquery','highcharts'));
 			wp_enqueue_script( 'highcharts-exporting', 'https://code.highcharts.com/modules/exporting.js', array('jquery','highcharts'));
-			wp_enqueue_script( 'ajax-post', get_stylesheet_directory_uri() . '/scripts.js', array('jquery','highcharts','highcharts-variable-pie','highcharts-exporting'), 1.8);
+			wp_enqueue_script( 'ajax-post', get_stylesheet_directory_uri() . '/scripts.js', array('jquery','highcharts','highcharts-variable-pie','highcharts-exporting'), 1.99);
 		}
 	}
 }
@@ -368,7 +368,8 @@ function send_email_callback() {
 		$data["overall"],
 		$data["email"],
 		$data["participant"],
-		$data["balance"]
+		$data["balance"],
+		$data["urlString"]
 	);
 
 
@@ -379,8 +380,34 @@ function send_email_callback() {
  
 	$sent_email = wp_mail( $to, $subject, $body, $headers );
 
-	echo $sent_email;
-
-
+	echo $email_html;
 	die();
+}
+
+
+
+//admin scripts
+add_action('admin_head', 'my_custom_fonts');
+
+function my_custom_fonts() {
+  echo '<style>
+	#menu-posts-emotional {
+		border-top: 1px solid white!important;
+	}
+	#menu-posts-spiritual {
+		border-bottom: 1px solid white!important;
+	}
+    #menu-posts-cognitive,
+    #menu-posts-emotional,
+    #menu-posts-physical,
+    #menu-posts-financial,
+    #menu-posts-spiritual {
+		background: #02188d;
+	}
+	#menu-posts-fit-submission {
+		background: #005d00;
+		border-top: 1px solid white!important;
+		border-bottom: 1px solid white!important;
+	}
+  </style>';
 }
