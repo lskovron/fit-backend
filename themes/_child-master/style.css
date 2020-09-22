@@ -14,84 +14,96 @@
  * ------------------------------------------------------------------------- */
 
 
-/* FONTS */
-@font-face { 
-    font-family: Xaloc; 
-    src: url(/wp-content/themes/_child-master/fonts/XalocText.otf); 
-    font-weight: normal; 
+
+/* @font-face { 
+  font-family: Xaloc; 
+  src: url("/wp-content/themes/_child-master/fonts/XalocText.otf") format('opentype'); 
+  src: url("/wp-content/themes/_child-master/fonts/XalocText.ttf") format('ttf'); 
+  font-weight: normal; 
 }
 @font-face { 
-    font-family: Xaloc; 
-    src: url(/wp-content/themes/_child-master/fonts/XalocText-Italic.otf); 
-    font-style: italic; 
+  font-family: Xaloc; 
+  src: url("/wp-content/themes/_child-master/fonts/XalocText-Italic.otf") format('opentype'); 
+  src: url("/wp-content/themes/_child-master/fonts/XalocText-Italic.ttf") format('ttf'); 
+  font-style: italic; 
 }
 @font-face { 
-    font-family: Xaloc; 
-    src: url(/wp-content/themes/_child-master/fonts/XalocText-Bold.otf); 
-    font-weight: 700; 
+  font-family: Xaloc; 
+  src: url("/wp-content/themes/_child-master/fonts/XalocText-Bold.otf") format('opentype'); 
+  src: url("/wp-content/themes/_child-master/fonts/XalocText-Bold.ttf") format('ttf'); 
+  font-weight: 700; 
 }
 @font-face { 
-    font-family: Xaloc; 
-    src: url(/wp-content/themes/_child-master/fonts/XalocText-Heavy.otf); 
-    font-weight: 900; 
+  font-family: Xaloc; 
+  src: url("/wp-content/themes/_child-master/fonts/XalocText-Heavy.otf") format('opentype'); 
+  src: url("/wp-content/themes/_child-master/fonts/XalocText-Heavy.ttf") format('ttf'); 
+  font-weight: 900; 
 }
 
 @font-face { 
-    font-family: Xaloc; 
-    src: url(/wp-content/themes/_child-master/fonts/XalocText-BoldItalic.otf); 
-    font-style: italic; 
-    font-weight: 700; 
+  font-family: Xaloc; 
+  src: url("/wp-content/themes/_child-master/fonts/XalocText-BoldItalic.otf") format('opentype'); 
+  src: url("/wp-content/themes/_child-master/fonts/XalocText-BoldItalic.ttf") format('ttf'); 
+  font-style: italic; 
+  font-weight: 700; 
 }
 @font-face { 
-    font-family: Xaloc; 
-    src: url(/wp-content/themes/_child-master/fonts/XalocText-HeavyItalic.otf); 
-    font-style: italic; 
-    font-weight: 900; 
+  font-family: Xaloc; 
+  src: url("/wp-content/themes/_child-master/fonts/XalocText-HeavyItalic.otf") format('opentype'); 
+  src: url("/wp-content/themes/_child-master/fonts/XalocText-HeavyItalic.ttf") format('ttf'); 
+  font-style: italic; 
+  font-weight: 900; 
+} */
+
+/* @font-face { 
+  font-family: DIN Pro; 
+  src: url("/wp-content/themes/_child-master/fonts/DINPro400.otf") format('opentype'); 
+  src: url("/wp-content/themes/_child-master/fonts/DINPro400.ttf") format('ttf'); 
+  font-weight: normal; 
+}
+@font-face { 
+  font-family: DIN Pro; 
+  src: url("/wp-content/themes/_child-master/fonts/DINProItalic400.otf") format('opentype'); 
+  src: url("/wp-content/themes/_child-master/fonts/DINProItalic400.ttf") format('ttf'); 
+  font-style: italic; 
+}
+@font-face { 
+  font-family: DIN Pro; 
+  src: url("/wp-content/themes/_child-master/fonts/DINProBold700.otf") format('opentype'); 
+  src: url("/wp-content/themes/_child-master/fonts/DINProBold700.ttf") format('ttf'); 
+  font-weight: 700; 
+}
+@font-face { 
+  font-family: DIN Pro; 
+  src: url("/wp-content/themes/_child-master/fonts/DINProBlack900.otf") format('opentype'); 
+  src: url("/wp-content/themes/_child-master/fonts/DINProBlack900.ttf") format('ttf'); 
+  font-weight: 900; 
 }
 
 @font-face { 
-    font-family: DIN Pro; 
-    src: url(/wp-content/themes/_child-master/fonts/DINPro400.otf); 
-    font-weight: normal; 
+  font-family: DIN Pro; 
+  src: url("/wp-content/themes/_child-master/fonts/DINProBoldItalic700.otf") format('opentype'); 
+  src: url("/wp-content/themes/_child-master/fonts/DINProBoldItalic700.ttf") format('ttf'); 
+  font-style: italic; 
+  font-weight: 700; 
 }
 @font-face { 
-    font-family: DIN Pro; 
-    src: url(/wp-content/themes/_child-master/fonts/DINProItalic400.otf); 
-    font-style: italic; 
-}
-@font-face { 
-    font-family: DIN Pro; 
-    src: url(/wp-content/themes/_child-master/fonts/DINProBold700.otf); 
-    font-weight: 700; 
-}
-@font-face { 
-    font-family: DIN Pro; 
-    src: url(/wp-content/themes/_child-master/fonts/DINProBlack900.otf); 
-    font-weight: 900; 
-}
-
-@font-face { 
-    font-family: DIN Pro; 
-    src: url(/wp-content/themes/_child-master/fonts/DINProBoldItalic700.otf); 
-    font-style: italic; 
-    font-weight: 700; 
-}
-@font-face { 
-    font-family: DIN Pro; 
-    src: url(/wp-content/themes/_child-master/fonts/DINProBlackItalic900.otf); 
-    font-style: italic; 
-    font-weight: 900; 
-}
+  font-family: DIN Pro; 
+  src: url("/wp-content/themes/_child-master/fonts/DINProBlackItalic900.otf") format('opentype'); 
+  src: url("/wp-content/themes/_child-master/fonts/DINProBlackItalic900.ttf") format('ttf'); 
+  font-style: italic; 
+  font-weight: 900; 
+} */
 
 body { 
     font-size: 16px; 
-    font-family: "DIN Pro"; 
+    font-family: 'Open Sans', sans-serif;
     color: #576a7c;
     background: #efefef;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Xaloc";
+    font-family: 'Libre Baskerville', serif;
     margin: .25em 0 .25em;
     color: #576a7c;
 }
@@ -115,7 +127,27 @@ h4 {
 
 p {
     font-size: 1em;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    line-height: 1.35;
+    color: #a0a9b3;
+    font-weight: 100;
+}
+ul {
+    list-style: circle;
+    padding-left: 25px;
+}
+li {
+    font-size: 1em;
+    line-height: 1.35;
+    color: #a0a9b3;
+    font-weight: 100;
+}
+
+strong {
+    font-weight: 700;
+}
+.text-center {
+    text-align: center;
 }
 
 #logo {
@@ -129,9 +161,8 @@ p {
 }
 
 #page-container {
-    max-width:700px;
+    max-width:950px;
     width:100%;
-    padding: 40px;
     margin:30px auto;
     background: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -143,26 +174,24 @@ p {
 
 
 button {
-    color: rgba(0, 0, 0, 0.87);
-    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
-    background-color: #e0e0e0;
-    padding: 6px 16px;
-    font-size: 0.875rem;
-    min-width: 64px;
-    box-sizing: border-box;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 500;
-    line-height: 1.75;
-    border-radius: 4px;
-    letter-spacing: 0.02857em;
-    text-transform: uppercase;
+    display: block;
+    margin: 0 auto;
+    font-size: 35px;
+    font-family: 'Libre Baskerville',serif;
+    padding: 11px 35px;
+    border-radius: 20px;
+    color: white;
+    text-transform: none;
+    font-weight: 700;
+    background: #79bdf2;
     border: none;
+}
+button:hover {
+    background: #1e7ce1
 }
 button:hover,
 button:focus {
     box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
-    background-color: #d5d5d5;
     cursor: pointer;
 }
 
@@ -170,4 +199,168 @@ button:focus {
 /* HIGHCHARTS */
 .highcharts-exporting-group {
     transform: translate(12px, -13px);
+}
+
+
+/* RESULTS */
+#results-page-container {
+    padding: 40px 70px;
+}
+#results-header {
+    font-size: 1.7rem;
+    text-align: center;
+    border: 1px solid;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 11px;
+    margin-bottom: 30px;
+}
+div#result-section h4 {
+    text-align: center;
+    margin: 10px 0;
+}
+.archetype-container img {
+    max-width: 100%;
+}
+h2.dimension-header {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 400;
+    position: relative;
+    margin-bottom: 60px;
+}
+
+h2.dimension-header:after {content: "";width: 60px;border-bottom: 1px solid;position: absolute;bottom: -25px;left: 50%;transform: translateX(-50%);}
+
+.result-analysis .col1 h3 {
+    font-family: 'Open Sans';
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.result-analysis {
+    display: flex;
+    flex-direction: row;
+    margin: 30px 0 80px;
+}
+
+.result-analysis .col1,
+.result-analysis .col2 {
+    padding: 0 30px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.result-analysis .col1 img {
+    width: 170px;
+}
+
+.colored-subdimemsions span {
+    display: inline-block;
+    font-family: 'Open Sans Condensed', sans-serif;
+    padding: 5px 12px 5px 0;
+}
+.dim-score {
+    font-size: 1.75rem;
+    font-weight: 400;
+}
+.dim-score span {
+    font-family: 'Open Sans', sans-serif;
+    color: #ffb100;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+h2.marketing-header {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 400;
+    position: relative;
+    margin-bottom: 60px;
+}
+
+h2.marketing-header:after {content: "";width: 60px;border-bottom: 1px solid;position: absolute;bottom: -25px;left: 50%;transform: translateX(-50%);}
+.marketing-copy {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+.marketing-copy ul {
+    text-align: left;
+    margin-left: 20%;
+}
+h4.send-results {
+    font-size: 18px;
+    font-family: Open Sans,sans-serif;
+    font-weight: 400;
+    text-align: center;
+    margin: 10px 0;
+    margin-top: 40px;
+}
+h4.send-results span {
+    font-weight: 700;
+}
+
+
+/*FOOTER*/
+#footer-logo {
+    width: 200px;
+    max-width: 100%;
+}
+.MuiGrid-spacing-xs-5 {
+    width: 100%;
+}
+.MuiGrid-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.MuiGrid-spacing-xs-5 > .MuiGrid-item {
+    padding: 20px;
+}
+@media (min-width: 600px){
+    
+    .MuiGrid-grid-sm-4 {
+        flex-grow: 0;
+        max-width: 33.333333%;
+        flex-basis: 33.333333%;
+    }
+}
+
+.MuiGrid-item {
+    margin: 0;
+    box-sizing: border-box;
+}
+.MuiSvgIcon-root {
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    font-size: 1.5rem;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.footer-tooltip {
+    position: relative;
+}
+.footer-tooltip .tooltip {
+    display: none;
+}
+.footer-tooltip:hover .tooltip {
+    display: block;
+    position: absolute;
+    top: 0;
+    color: white;
+    transform: translateY(-100%);
+    font-size: 10px;
+    padding: 3px 8px;
+    background-color: rgba(0,0,0,0.75);
+}
+footer button {
+    padding: 0;
 }

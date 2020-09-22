@@ -53,7 +53,7 @@ jQuery(document).ready(function(){
     let initialOptions = {
         chart: {
           type: "variablepie",
-          margin: [0, 200, 0, 0]
+          margin: [0, 200, 20, 0]
         },
       
         title: {
@@ -72,10 +72,8 @@ jQuery(document).ready(function(){
         },
         plotOptions: {
           series: {
+            innerSize: 0,
             stacking: "normal",
-            dataLabels: {
-              enabled: false,
-            },
             showInLegend: true,
             point: {
               events: {
@@ -89,16 +87,114 @@ jQuery(document).ready(function(){
         
         series: [
           {
-            minPointSize: 10,
-            innerSize: "3%",
-            zMin: 0,
+            minPointSize: 40,
+            innerSize: 0,
+            sizeBy: "radius",
             name: "Subdomain score",
+            dataLabels: {
+              enabled: false,
+            },
             tooltip: {
               headerFormat: '<span style="color:{point.color}">●</span><span style="font-size: 12px;font-weight:bold;"> {point.key}</span><br/>',
               pointFormat: '<br/>Score: {point.z}<br/>',
               valueDecimals: 2
-            }
-          }
+            },
+          },
+          {
+            showInLegend: false,
+            type: "variablepie",
+            size: "100%",
+            innerSize: "100%",
+            minPointSize: 0,
+            borderSize: 1,
+            borderColor: '#000',
+            dataLabels: {
+                enabled: true,
+                format: "100%",
+                enabled: true,
+                connectorPadding: 0,
+                connectorWidth: 0,
+                distance: -3
+            },
+            enableMouseTracking: false,
+            data: [{
+                y: 100,
+                z: 0,
+                },
+            ],
+            colors: ['rgba(0,0,0,0)']
+          },
+          {
+            showInLegend: false,
+            type: "variablepie",
+            size: "100%",
+            innerSize: "75%",
+            minPointSize: 0,
+            dataLabels: {
+                enabled: true,
+                format: '75%',
+                connectorPadding: 0,
+                connectorWidth: 0,
+                distance: -3
+            },
+            enableMouseTracking: false,
+            data: [{
+                y: 100,
+                z: 75,
+                },
+            ],
+            borderSize: 1,
+            borderColor: '#000',
+            colors: ['rgba(0,0,0,0)'],
+          },
+          {
+            showInLegend: false,
+            type: "variablepie",
+            size: "100%",
+            innerSize: "50%",
+            minPointSize: 0,
+            dataLabels: {
+                enabled: true,
+                format: "50%",
+                enabled: true,
+                connectorPadding: 0,
+                connectorWidth: 0,
+                distance: -3
+            },
+            enableMouseTracking: false,
+            data: [{
+                y: 100,
+                z: 50,
+                },
+            ],
+            borderSize: 1,
+            borderColor: '#000',
+            colors: ['rgba(0,0,0,0)'],
+          },
+          {
+            showInLegend: false,
+            type: "variablepie",
+            size: "100%",
+            innerSize: "25%",
+            minPointSize: 0,
+            dataLabels: {
+                enabled: true,
+                format: "25%",
+                enabled: true,
+                connectorPadding: 0,
+                connectorWidth: 0,
+                distance: -3
+            },
+            enableMouseTracking: false,
+            data: [{
+                y: 100,
+                z: 25,
+                },
+            ],
+            borderSize: 1,
+            borderColor: '#000',
+            colors: ['rgba(0,0,0,0)'],
+          },
         ],
 
         responsive: {
@@ -310,26 +406,22 @@ jQuery(document).ready(function(){
         })
 
         if(rootObj['overall-score']){
-            jQuery('#overall .total').text(rootObj['overall-score'])
+            jQuery('#overall .total').text(rootObj['overall-score']);
+            jQuery('#result-section .total').text(rootObj['overall-score']);
         }
 
         const highest = Object.keys(overallScores).reduce((a, b) => {return overallScores[a] > overallScores[b] ? a : b });
-        const lowest = Object.keys(overallScores).reduce((a, b) => {return overallScores[a] < overallScores[b] ? a : b });
+        const highestSelector = `.archetype-container img.${highest.replace('-score','')}`;
 
-        const highestSelector = `#${highest.substr(0,1)}-high`
-        const lowestSelector = `#${lowest.substr(0,1)}-low`
-
-        jQuery(highestSelector).removeClass('result-analysis').show();
-        jQuery(lowestSelector).removeClass('result-analysis').show();
-        jQuery('.result-analysis').remove();
-
-        jQuery('#high-title span').addClass(highest);
-        jQuery('#low-title span').addClass(lowest);
-        jQuery('#high-title span').text(`${capitalizeWords( highest.replace('-score','') ) } (${overallScores[highest]})`)
-        jQuery('#low-title span').text(`${capitalizeWords( lowest.replace('-score','') ) } (${overallScores[lowest]})`)
-
-        jQuery('#balance').text(`${getBalanceScore(overallScores)}%`);
+        jQuery(highestSelector).show();
+        jQuery('#result-section .balance').text(`${getBalanceScore(overallScores)}%`);
         jQuery('#email-address').text(rootObj['email']);
+
+        Object.keys(overallScores).forEach(key=>{
+            let selector = `.dim-score #${key}`;
+            jQuery(selector).text(overallScores[key]);
+        })
+
 
     }
 
@@ -425,7 +517,7 @@ jQuery(document).ready(function(){
                 console.log(response);
                 jQuery('#send-email').prop('disabled',false);
                 jQuery('#send-email').text('Re-send email');
-                jQuery('#thank-you-email').text("Your email has been send!");
+                jQuery('#thank-you-email').show();
             }
             else {
                 // showErrorBlock();

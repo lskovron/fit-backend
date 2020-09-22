@@ -34,13 +34,13 @@ if ( ! function_exists( 'aa_enqueue_styles' ) ) {
 
 		// Enqueue Child theme's stylesheet.
 		// Setting 'parent-style' as a dependency will ensure that the child theme stylesheet loads after it.
-		wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( $parent_style ), 3.0 );
+		wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( $parent_style ), time() );
 
 		if(is_page(49)) {
 			wp_enqueue_script( 'highcharts', 'https://code.highcharts.com/highcharts.js');
 			wp_enqueue_script( 'highcharts-variable-pie', 'https://code.highcharts.com/modules/variable-pie.js', array('jquery','highcharts'));
 			wp_enqueue_script( 'highcharts-exporting', 'https://code.highcharts.com/modules/exporting.js', array('jquery','highcharts'));
-			wp_enqueue_script( 'ajax-post', get_stylesheet_directory_uri() . '/scripts.js', array('jquery','highcharts','highcharts-variable-pie','highcharts-exporting'), 1.99);
+			wp_enqueue_script( 'ajax-post', get_stylesheet_directory_uri() . '/scripts.js', array('jquery','highcharts','highcharts-variable-pie','highcharts-exporting'), time() );
 		}
 	}
 }
