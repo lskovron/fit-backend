@@ -477,14 +477,16 @@ $email_html .= '<!doctype html>
           width: 55px;
       }
       .imgRow span {
-          font-family: Open Sans Condensed;
+          font-family: Open Sans Condensed, Open Sans, sans-serif;
           display: block;
           font-size: 11px;
             text-align: center;
+            font-weight: bold;
       }
       .colored-subdimemsions span {
-          font-family: Open Sans Condensed;
+          font-family: Open Sans Condensed, Open Sans, sans-serif;
           font-size: 18px;
+          font-weight: bold;
       }
       .colored-subdimemsions p {
           margin-bottom: 5px;
@@ -502,7 +504,7 @@ $email_html .= '<!doctype html>
         font-weight: 400;
         position: relative;
         margin-bottom: 20px;
-        font-family: Libre Baskerville;
+        font-family: Libre Baskerville, serif;
       }
       .dimension-header div {
         width: 60px;
@@ -537,7 +539,7 @@ $email_html .= '<!doctype html>
                       <table>
                           <tr>
                               <td style="text-align:center;">
-                                <img width="300" src="';
+                                <img width="300px" src="';
 $email_html .= get_stylesheet_directory_uri();
 $email_html .= 
                                 '/images/logo.png" alt="fit logo" id="logo">
@@ -571,7 +573,7 @@ $email_html .= '</span>
                                     <span style="font-weight:300"> / </span>
                                     <span style="color:#0140c9">20</span>
                                 </h2>
-                                <img width="300" src="';
+                                <img width="300px" src="';
 $email_html .= get_site_url();
 $email_html .= '/wp-content/uploads/2020/09/Screen-Shot-2020-09-16-at-3.39.33-PM.png" />
                                 <br />
@@ -590,7 +592,7 @@ $email_html .= '">here</a>
                       <table>
                           <tr>
                               <td style="text-align:center;color:#a0a9b3;">
-                                <img width="400" src="';
+                                <img width="400px" src="';
 $email_html .= $archUrl;
 $email_html .= '" alt="archetype">';
 $email_html .= $archText;
@@ -631,7 +633,7 @@ $email_html .=
                                 </h3>
                             </td>
                             <td style="width:50%;text-align:center;">
-                                <img width="300" src="'.get_site_url().'/wp-content/uploads/2020/09/Fit-House-for-powerpoint.png" />
+                                <img width="300px" src="'.get_site_url().'/wp-content/uploads/2020/09/Fit-House-for-powerpoint.png" />
                             </td>
                           </tr>
                       </table>
@@ -668,7 +670,7 @@ $email_html .=
                           </tr>
                           <tr class="dim-details">
                             <td width="25%" style="text-align:center;padding: 20px;">
-                                <img src="'.get_site_url().'/wp-content/uploads/2020/09/pillarYellow.png" alt="dimension icon">
+                                <img width="100px" src="'.get_site_url().'/wp-content/uploads/2020/09/pillarYellow.png" alt="dimension icon">
                             </td>
                             <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #ffb100;">
                                 <div class="colored-subdimemsions">
@@ -721,7 +723,7 @@ $email_html .=
                         </tr>
                         <tr class="dim-details">
                           <td width="25%" style="text-align:center;padding: 20px;">
-                              <img src="'.get_site_url().'/wp-content/uploads/2020/09/pillarRed.png" alt="dimension icon">
+                              <img width="100px" src="'.get_site_url().'/wp-content/uploads/2020/09/pillarRed.png" alt="dimension icon">
                           </td>
                           <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #f26b3e;">
                               <div class="colored-subdimemsions">
@@ -778,7 +780,7 @@ $email_html .=
                         </tr>
                         <tr class="dim-details">
                           <td width="25%" style="text-align:center;padding: 20px;">
-                              <img src="'.get_site_url().'/wp-content/uploads/2020/09/pillarGreen.png" alt="dimension icon">
+                              <img width="100px" src="'.get_site_url().'/wp-content/uploads/2020/09/pillarGreen.png" alt="dimension icon">
                           </td>
                           <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #68d566;">
                               <div class="colored-subdimemsions">
@@ -827,7 +829,7 @@ $email_html .=
                       </tr>
                       <tr class="dim-details">
                         <td width="25%" style="text-align:center;padding: 20px;">
-                            <img src="'.get_site_url().'/wp-content/uploads/2020/09/pillarTurq.png" alt="dimension icon">
+                            <img width="100px" src="'.get_site_url().'/wp-content/uploads/2020/09/pillarTurq.png" alt="dimension icon">
                         </td>
                         <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #08c6de;">
                             <div class="colored-subdimemsions">
@@ -880,7 +882,7 @@ $email_html .=
                     </tr>
                     <tr class="dim-details">
                       <td width="25%" style="text-align:center;padding: 20px;">
-                          <img src="'.get_site_url().'/wp-content/uploads/2020/09/pillarPurple.png" alt="dimension icon">
+                          <img width="100px" src="'.get_site_url().'/wp-content/uploads/2020/09/pillarPurple.png" alt="dimension icon">
                       </td>
                       <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #8e8ee7;">
                           <div class="colored-subdimemsions">

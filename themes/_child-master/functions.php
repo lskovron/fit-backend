@@ -30,7 +30,7 @@ if ( ! function_exists( 'aa_enqueue_styles' ) ) {
 		$parent_style = 'parent-style';
 
 		// Enqueue Parent theme's stylesheet.
-		wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
+		wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css', array(), time() );
 
 		// Enqueue Child theme's stylesheet.
 		// Setting 'parent-style' as a dependency will ensure that the child theme stylesheet loads after it.
