@@ -1,103 +1,4 @@
-<?php
-
-function return_email_template(
-  $data
-  // $highestDim,
-  // $lowestDim,
-  // $cognitive,
-  // $emotional,
-  // $physical,
-  // $financial,
-  // $spiritual,
-  // $overall,
-  // $email,
-  // $participant,
-  // $balance,
-  // $urlString
-){
-  extract($data);
-
-$marketingText = get_field('marketing_copy',203);
-$marketingImages = '';
-$archUrl = '';
-$archText = '';
-$cogText = '';
-$phyText = '';
-$finText = '';
-$emoText = '';
-$spiText = '';
-
-$archCode = substr($highestDim, 0, 1).substr($lowestDim, 0, 1);
-
-if( have_rows('marketing_copy_images',203) ):   while ( have_rows('marketing_copy_images',203) ) : the_row();
-$marketingImages .= '<img src="'.get_sub_field('image').'" />';
-endwhile; endif;
-
-if(get_field('archetype_images',84)){
-  $archUrl = get_field('archetype_images',84)[$highestDim];
-}
-
-if(get_field('archetype_text',203)){
-  $archText = get_field('archetype_text',203)[$archCode];
-}
-
-if( (float)$cognitive < 5 ){
-  $cogText = get_field('dimension_scores',203)['cognitive_5'];
-} elseif( (float)$cognitive < 10 ) {
-  $cogText = get_field('dimension_scores',203)['cognitive_5_10'];
-} elseif( (float)$cognitive < 15 ) {
-  $cogText = get_field('dimension_scores',203)['cognitive_10_15'];
-} else {
-  $cogText = get_field('dimension_scores',203)['cognitive_15_20'];
-}
-
-if( (float)$physical < 5 ){
-  $phyText = get_field('dimension_scores',203)['physical_5'];
-} elseif( (float)$physical < 10 ) {
-  $phyText = get_field('dimension_scores',203)['physical_5_10'];
-} elseif( (float)$physical < 15 ) {
-  $phyText = get_field('dimension_scores',203)['physical_10_15'];
-} else {
-  $phyText = get_field('dimension_scores',203)['physical_15_20'];
-}
-
-if( (float)$financial < 5 ){
-  $finText = get_field('dimension_scores',203)['financial_5'];
-} elseif( (float)$financial < 10 ) {
-  $finText = get_field('dimension_scores',203)['financial_5_10'];
-} elseif( (float)$financial < 15 ) {
-  $finText = get_field('dimension_scores',203)['financial_10_15'];
-} else {
-  $finText = get_field('dimension_scores',203)['financial_15_20'];
-}
-
-if( (float)$emotional < 5 ){
-  $emoText = get_field('dimension_scores',203)['emotional_5'];
-} elseif( (float)$emotional < 10 ) {
-  $emoText = get_field('dimension_scores',203)['emotional_5_10'];
-} elseif( (float)$emotional < 15 ) {
-  $emoText = get_field('dimension_scores',203)['emotional_10_15'];
-} else {
-  $emoText = get_field('dimension_scores',203)['emotional_15_20'];
-}
-
-if( (float)$spiritual < 5 ){
-  $spiText = get_field('dimension_scores',203)['spiritual_5'];
-} elseif( (float)$spiritual < 10 ) {
-  $spiText = get_field('dimension_scores',203)['spiritual_5_10'];
-} elseif( (float)$spiritual < 15 ) {
-  $spiText = get_field('dimension_scores',203)['spiritual_10_15'];
-} else {
-  $spiText = get_field('dimension_scores',203)['spiritual_15_20'];
-}
-
-
-
-
-$email_html = '';
-// ob_start();
-
-$email_html .= '<!doctype html>
+<!doctype html>
 <html>
   <head>
     <meta name="viewport" content="width=device-width" />
@@ -531,10 +432,7 @@ $email_html .= '<!doctype html>
                       <table>
                           <tr>
                               <td style="text-align:center;">
-                                <img width="300" src="';
-$email_html .= get_stylesheet_directory_uri();
-$email_html .= 
-                                '/images/logo.png" alt="fit logo" id="logo">
+                                <img width="300" src="http://localhost:8888/fit-backend/wp-content/themes/_child-master/images/logo.png" alt="fit logo" id="logo">
                               </td>
                           </tr>
                       </table>
@@ -559,20 +457,14 @@ $email_html .=
                                 <h2 class="serif overall">
                                     Overall FIT Score
                                     <br>
-                                    <span class="total" style="color:#1e7ce1">';
-$email_html .= $overall;
-$email_html .= '</span>
+                                    <span class="total" style="color:#1e7ce1">15.2</span>
                                     <span style="font-weight:300"> / </span>
                                     <span style="color:#0140c9">20</span>
                                 </h2>
-                                <img width="300" src="';
-$email_html .= get_site_url();
-$email_html .= '/wp-content/uploads/2020/09/Screen-Shot-2020-09-16-at-3.39.33-PM.png" />
+                                <img width="300" src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/Screen-Shot-2020-09-16-at-3.39.33-PM.png" />
                                 <br />
                                 <p style="font-weight: 700;color: #576a7c;margin-top: 10px;">View your CircumFIT chart
-                                    <a href="http://results.thefitexperience.com/results/';
-$email_html .= $urlString;
-$email_html .= '">here</a>
+                                    <a href="http://results.thefitexperience.com/results/?c-learning-strategies=20&t-cognitive-score=20&e-current-emotional-health=4.8&t-emotional-score=4.8&p-aerobic-activity=16&t-physical-score=16&f-long-term=20&t-financial-score=20&s-presence=16&t-spiritual-score=16&t-overall-score=15.2&participant=Leo%20Skovron&email=leo.skovron%40gmail.com&age=26-35&income=101-150&weight=300lbs&height=5%20foot%201&gender=female&education=bachelor&marital=widowed&family=4%2B&ethnicity=latino-hispanic&language=french&employment=seeking&location=New%20Orleans">here</a>
                                 </p>
                             </td>
                           </tr>
@@ -584,12 +476,10 @@ $email_html .= '">here</a>
                       <table>
                           <tr>
                               <td style="text-align:center;color:#a0a9b3;">
-                                <img width="400" src="';
-$email_html .= $archUrl;
-$email_html .= '" alt="archetype">';
-$email_html .= $archText;
-$email_html .=
-                            '</td>
+                                <img width="400" src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/FIT-Archetype-Mystic.png" alt="archetype">
+                                <p>Sed bibendum est non risus viverra, vel pharetra nisl pulvinar. Sed vehicula magna vitae ullamcorper facilisis. Nunc sapien mauris, faucibus eget luctus nec, semper a massa. Aenean quis lacus varius, consequat ligula at, egestas lectus. Morbi sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
+                                <p>Sed bibendum est non risus viverra, vel pharetra nisl pulvinar. Sed vehicula magna vitae ullamcorper facilisis. Nunc sapien mauris, faucibus eget luctus nec, semper a massa. Aenean quis lacus varius, consequat ligula at, egestas lectus. Morbi sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
+                              </td>
                           </tr>
                       </table>
                   </td>
@@ -601,31 +491,31 @@ $email_html .=
                             <td style="width:50%;text-align:right;">
                                 <div class="imgRow">
                                     <span style="color: rgb(255, 177, 0);">COGNITIVE</span>
-                                    <img src="'.get_site_url().'/wp-content/uploads/2020/09/cog.png" alt="dimension icon">
+                                    <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/cog.png" alt="dimension icon">
                                 </div>
                                 <div class="imgRow">
                                     <span style="color: rgb(228, 51, 4);">PHYSICAL</span>
-                                    <img src="'.get_site_url().'/wp-content/uploads/2020/09/phy.png" alt="dimension icon">
-                                </div>
-                                <div class="imgRow">
-                                    <span style="color: rgb(104, 213, 102);">FINANCIAL</span>
-                                    <img src="'.get_site_url().'/wp-content/uploads/2020/09/fin.png" alt="dimension icon">
-                                </div>
-                                <div class="imgRow">
-                                  <span style="color: rgb(8, 198, 222);">EMOTIONAL</span>
-                                  <img src="'.get_site_url().'/wp-content/uploads/2020/09/emo.png" alt="dimension icon">
+                                    <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/phy.png" alt="dimension icon">
                                 </div>
                                 <div class="imgRow">
                                     <span style="color: rgb(142, 142, 231);">SPIRITUALITY</span>
-                                    <img src="'.get_site_url().'/wp-content/uploads/2020/09/spi.png" alt="dimension icon">
+                                    <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/spi.png" alt="dimension icon">
+                                </div>
+                                <div class="imgRow">
+                                    <span style="color: rgb(8, 198, 222);">EMOTIONAL</span>
+                                    <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/emo.png" alt="dimension icon">
+                                </div>
+                                <div class="imgRow">
+                                    <span style="color: rgb(104, 213, 102);">FINANCIAL</span>
+                                    <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/fin.png" alt="dimension icon">
                                 </div>
                                 <h3 class="serif">
                                     Your Balance Score:<br />
-                                    <span style="color:#0140c9;font-size:1.5em">'.$balance.'</span>
+                                    <span style="color:#0140c9;font-size:1.5em">84%</span>
                                 </h3>
                             </td>
                             <td style="width:50%;text-align:center;">
-                                <img width="300" src="'.get_site_url().'/wp-content/uploads/2020/09/Fit-House-for-powerpoint.png" />
+                                <img width="300" src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/Fit-House-for-powerpoint.png" />
                             </td>
                           </tr>
                       </table>
@@ -650,45 +540,47 @@ $email_html .=
                           <tr class="dim-details">
                             <td width="25%" style="text-align:center;padding: 20px;border-bottom:1px solid #ffb100;transform: translateX(2px);">
                                 <h3 class="dim-score" style="color:#ffb100;">COGNITIVE</h3>
-                                <img src="'.get_site_url().'/wp-content/uploads/2020/09/cog.png" alt="dimension icon">
+                                <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/cog.png" alt="dimension icon">
                             </td>
                             <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #ffb100;border-bottom:1px solid #ffb100;">
                                 <h3 class="dim-score">
-                                    <span id="cognitive-score" style="color:#ffb100;">'.$cognitive.'</span> 
+                                    <span id="cognitive-score" style="color:#ffb100;">12.8</span> 
                                     out of 20
                                 </h3>
-                                <div class="dim-copy">'.$cogText.'</div>
+                                <div class="dim-copy">
+                                    <p>Sed bibendum est non risus viverra, vel pharetra nisl pulvinar. Sed vehicula magna vitae ullamcorper facilisis. Nunc sapien mauris, faucibus eget luctus nec, semper a massa. Aenean quis lacus varius, consequat ligula at, egestas lectus. Morbi sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
+                                </div>
                             </td>
                           </tr>
                           <tr class="dim-details">
                             <td width="25%" style="text-align:center;padding: 20px;">
-                                <img src="'.get_site_url().'/wp-content/uploads/2020/09/pillarYellow.png" alt="dimension icon">
+                                <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/cog.png" alt="dimension icon">
                             </td>
                             <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #ffb100;">
                                 <div class="colored-subdimemsions">
                                     <div style="color:#ff3a00">
-                                        <span>LEARNING STRATEGIES ('.$learningStrategies.')</span>
-                                        <p>'.get_field('subdimension_descriptions',203)["learning_strategies"].'</p>
+                                        <span>LEARNING STRATEGIES</span>
+                                        <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                     </div>
                                     <div style="color:#ff4a00">
-                                        <span>INTELLECTUAL ENGAGEMENT ('.$intellectualEngagement.')</span>
-                                        <p>'.get_field('subdimension_descriptions',203)["intellectual_engagement"].'</p>
+                                        <span>INTELLECTUAL ENGAGEMENT</span>
+                                        <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                     </div>
                                     <div style="color:#ff5a00">
-                                        <span>EFFORTFUL CONTROL ('.$effortControl.')</span>
-                                        <p>'.get_field('subdimension_descriptions',203)["effortful_control"].'</p>
+                                        <span>EFFORTFUL CONTROL</span>
+                                        <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                     </div>
                                     <div style="color:#ff6a00">
-                                        <span>ATTENTION ('.$attention.')</span>
-                                        <p>'.get_field('subdimension_descriptions',203)["attention"].'</p>
+                                        <span>ATTENTION</span>
+                                        <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                     </div>
                                     <div style="color:#ff7e00">
-                                        <span>AUTONOMY ('.$autonomy.')</span>
-                                        <p>'.get_field('subdimension_descriptions',203)["autonomy"].'</p>
+                                        <span>AUTONOMY</span>
+                                        <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                     </div>
                                     <div style="color:#ff9400">
-                                        <span>SOCIAL COGNITION ('.$autonomy.')</span>
-                                        <p>'.get_field('subdimension_descriptions',203)["social_cognition"].'</p>
+                                        <span>SOCIAL COGNITION</span>
+                                        <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                     </div>
                                 </div>
                             </td>
@@ -703,49 +595,51 @@ $email_html .=
                         <tr class="dim-details">
                           <td width="25%" style="text-align:center;padding: 20px;border-bottom:1px solid #f26b3e;transform: translateX(2px);">
                               <h3 class="dim-score" style="color:#f26b3e;">PHYSICAL</h3>
-                              <img src="'.get_site_url().'/wp-content/uploads/2020/09/phy.png" alt="dimension icon">
+                              <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/phy.png" alt="dimension icon">
                           </td>
                           <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #f26b3e;border-bottom:1px solid #f26b3e;">
                               <h3 class="dim-score">
-                                  <span id="physical-score" style="color:#f26b3e;">'.$physical.'</span> 
+                                  <span id="physical-score" style="color:#f26b3e;">12.8</span> 
                                   out of 20
                               </h3>
-                              <div class="dim-copy">'.$phyText.'</div>
+                              <div class="dim-copy">
+                                  <p>Sed bibendum est non risus viverra, vel pharetra nisl pulvinar. Sed vehicula magna vitae ullamcorper facilisis. Nunc sapien mauris, faucibus eget luctus nec, semper a massa. Aenean quis lacus varius, consequat ligula at, egestas lectus. Morbi sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
+                              </div>
                           </td>
                         </tr>
                         <tr class="dim-details">
                           <td width="25%" style="text-align:center;padding: 20px;">
-                              <img src="'.get_site_url().'/wp-content/uploads/2020/09/pillarRed.png" alt="dimension icon">
+                              <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/phy.png" alt="dimension icon">
                           </td>
                           <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #f26b3e;">
                               <div class="colored-subdimemsions">
                                   <div style="color:#a11500">
-                                      <span>NUTRITION ('.$nutrition.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["nutrition"].'</p>
+                                      <span>NUTRITION</span>
+                                      <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                   </div>
                                   <div style="color:#b51800">
-                                      <span>NUTRITIONAL KNOWLEDGE ('.$nutritionKnowledge.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["nutritional_knowledge"].'</p>
+                                      <span>NUTRITIONAL KNOWLEDGE</span>
+                                      <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                   </div>
                                   <div style="color:#c01a00">
-                                      <span>ACTIVITY LEVEL ('.$activityLevel.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["activity_level"].'</p>
+                                      <span>ACTIVITY LEVEL</span>
+                                      <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                   </div>
                                   <div style="color:#cb1c00">
-                                      <span>AEROBIC ACTIVITY ('.$aerobicActivity.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["aerobic_activity"].'</p>
+                                      <span>AEROBIC ACTIVITY</span>
+                                      <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                   </div>
                                   <div style="color:#d72100">
-                                      <span>STRENGTH TRAINING ('.$strengthTraining.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["strength_training"].'</p>
+                                      <span>STRENGTH TRAINING</span>
+                                      <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                   </div>
                                   <div style="color:#e43304">
-                                      <span>SLEEP HABITS ('.$sleepHabits.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["sleep_habits"].'</p>
+                                      <span>SLEEP HABITS</span>
+                                      <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                   </div>
                                   <div style="color:#f26b3e">
-                                      <span>SELF-IMAGE ('.$selfImage.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["self_image"].'</p>
+                                      <span>SELF-IMAGE</span>
+                                      <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                   </div>
                               </div>
                           </td>
@@ -760,41 +654,43 @@ $email_html .=
                         <tr class="dim-details">
                           <td width="25%" style="text-align:center;padding: 20px;border-bottom:1px solid #68d566;transform: translateX(2px);">
                               <h3 class="dim-score" style="color:#68d566;">FINANCIAL</h3>
-                              <img src="'.get_site_url().'/wp-content/uploads/2020/09/fin.png" alt="dimension icon">
+                              <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/fin.png" alt="dimension icon">
                           </td>
                           <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #68d566;border-bottom:1px solid #68d566;">
                               <h3 class="dim-score">
-                                  <span id="financial-score" style="color:#68d566;">'.$financial.'</span> 
+                                  <span id="financial-score" style="color:#68d566;">12.8</span> 
                                   out of 20
                               </h3>
-                              <div class="dim-copy">'.$finText.'</div>
+                              <div class="dim-copy">
+                                  <p>Sed bibendum est non risus viverra, vel pharetra nisl pulvinar. Sed vehicula magna vitae ullamcorper facilisis. Nunc sapien mauris, faucibus eget luctus nec, semper a massa. Aenean quis lacus varius, consequat ligula at, egestas lectus. Morbi sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
+                              </div>
                           </td>
                         </tr>
                         <tr class="dim-details">
                           <td width="25%" style="text-align:center;padding: 20px;">
-                              <img src="'.get_site_url().'/wp-content/uploads/2020/09/pillarGreen.png" alt="dimension icon">
+                              <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/fin.png" alt="dimension icon">
                           </td>
                           <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #68d566;">
                               <div class="colored-subdimemsions">
                                   <div style="color:#004c00">
-                                      <span>LONG-TERM PERSPECTIVE ('.$longTerm.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["long-term_perspective"].'</p>
+                                      <span>LONG-TERM PERSPECTIVE</span>
+                                      <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                   </div>
                                   <div style="color:#005d00">
-                                      <span>SHORT-TERM PERSPECTIVE ('.$shortTerm.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["short-term_perspective"].'</p>
+                                      <span>SHORT-TERM PERSPECTIVE</span>
+                                      <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                   </div>
                                   <div style="color:#006e00">
-                                      <span>REDUCE SADNESS ('.$reduceSadness.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["reduce_sadness"].'</p>
+                                      <span>REDUCE SADNESS</span>
+                                      <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                   </div>
                                   <div style="color:#008200">
-                                      <span>INCREASE HAPPINESS ('.$increaseHappiness.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["increase_happiness"].'</p>
+                                      <span>INCREASE HAPPINESS</span>
+                                      <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                   </div>
                                   <div style="color:#009906">
-                                      <span>NON-PECUNIARY ('.$nonPecuniary.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["non_pecuniary"].'</p>
+                                      <span>NON-PECUNIARY</span>
+                                      <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                   </div>
                               </div>
                           </td>
@@ -809,45 +705,47 @@ $email_html .=
                       <tr class="dim-details">
                         <td width="25%" style="text-align:center;padding: 20px;border-bottom:1px solid #08c6de;transform: translateX(2px);">
                             <h3 class="dim-score" style="color:#08c6de;">EMOTIONAL</h3>
-                            <img src="'.get_site_url().'/wp-content/uploads/2020/09/emo.png" alt="dimension icon">
+                            <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/emo.png" alt="dimension icon">
                         </td>
                         <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #08c6de;border-bottom:1px solid #08c6de;">
                             <h3 class="dim-score">
-                                <span id="emotional-score" style="color:#08c6de;">'.$emotional.'</span> 
+                                <span id="emotional-score" style="color:#08c6de;">12.8</span> 
                                 out of 20
                             </h3>
-                            <div class="dim-copy">'.$emoText.'</div>
+                            <div class="dim-copy">
+                                <p>Sed bibendum est non risus viverra, vel pharetra nisl pulvinar. Sed vehicula magna vitae ullamcorper facilisis. Nunc sapien mauris, faucibus eget luctus nec, semper a massa. Aenean quis lacus varius, consequat ligula at, egestas lectus. Morbi sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
+                            </div>
                         </td>
                       </tr>
                       <tr class="dim-details">
                         <td width="25%" style="text-align:center;padding: 20px;">
-                            <img src="'.get_site_url().'/wp-content/uploads/2020/09/pillarTurq.png" alt="dimension icon">
+                            <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/emo.png" alt="dimension icon">
                         </td>
                         <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #08c6de;">
                             <div class="colored-subdimemsions">
                                 <div style="color:#00296f">
-                                    <span>CURRENT EMOTIONAL HEALTH ('.$currentEmotionalHealth.')</span>
-                                    <p>'.get_field('subdimension_descriptions',203)["current_emotional_health"].'</p>
+                                    <span>CURRENT EMOTIONAL HEALTH</span>
+                                    <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                 </div>
                                 <div style="color:#00396f">
-                                    <span>SELF-COMPASSION AND EMOTIONAL AWARENESS ('.$selfCompassion.')</span>
-                                    <p>'.get_field('subdimension_descriptions',203)["self_compassion_and_emotional_awareness"].'</p>
+                                    <span>SELF-COMPASSION AND EMOTIONAL AWARENESS</span>
+                                    <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                 </div>
                                 <div style="color:#004980">
-                                    <span>STRESS RESILIENCE ('.$stressResilience.')</span>
-                                    <p>'.get_field('subdimension_descriptions',203)["stress_resilience"].'</p>
+                                    <span>STRESS RESILIENCE</span>
+                                    <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                 </div>
                                 <div style="color:#005f92">
-                                    <span>GRATITUDE AND POSITIVITY ('.$gratitudePositivity.')</span>
-                                    <p>'.get_field('subdimension_descriptions',203)["gratitude_and_positivity"].'</p>
+                                    <span>GRATITUDE AND POSITIVITY</span>
+                                    <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                 </div>
                                 <div style="color:#007aa9">
-                                    <span>MINDSET ('.$mindset.')</span>
-                                    <p>'.get_field('subdimension_descriptions',203)["mindset"].'</p>
+                                    <span>MINDSET</span>
+                                    <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                 </div>
                                 <div style="color:#009cc1">
-                                    <span>SOCIAL ENGAGEMENT ('.$socialEngagement.')</span>
-                                    <p>'.get_field('subdimension_descriptions',203)["social_engagement"].'</p>
+                                    <span>SOCIAL ENGAGEMENT</span>
+                                    <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                                 </div>
                             </div>
                         </td>
@@ -862,41 +760,43 @@ $email_html .=
                     <tr class="dim-details">
                       <td width="25%" style="text-align:center;padding: 20px;border-bottom:1px solid #8e8ee7;transform: translateX(2px);">
                           <h3 class="dim-score" style="color:#8e8ee7;">SPIRITUAL</h3>
-                          <img src="'.get_site_url().'/wp-content/uploads/2020/09/spi.png" alt="dimension icon">
+                          <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/spi.png" alt="dimension icon">
                       </td>
                       <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #8e8ee7;border-bottom:1px solid #8e8ee7;">
                           <h3 class="dim-score">
-                              <span id="spiritual-score" style="color:#8e8ee7;">'.$spiritual.'</span> 
+                              <span id="spiritual-score" style="color:#8e8ee7;">12.8</span> 
                               out of 20
                           </h3>
-                          <div class="dim-copy">'.$spiText.'</div>
+                          <div class="dim-copy">
+                              <p>Sed bibendum est non risus viverra, vel pharetra nisl pulvinar. Sed vehicula magna vitae ullamcorper facilisis. Nunc sapien mauris, faucibus eget luctus nec, semper a massa. Aenean quis lacus varius, consequat ligula at, egestas lectus. Morbi sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
+                          </div>
                       </td>
                     </tr>
                     <tr class="dim-details">
                       <td width="25%" style="text-align:center;padding: 20px;">
-                          <img src="'.get_site_url().'/wp-content/uploads/2020/09/pillarPurple.png" alt="dimension icon">
+                          <img src="http://localhost:8888/fit-backend/wp-content/uploads/2020/09/spi.png" alt="dimension icon">
                       </td>
                       <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #8e8ee7;">
                           <div class="colored-subdimemsions">
                               <div style="color:#01188d">
-                                  <span>CONNECTION ('.$connection.')</span>
-                                  <p>'.get_field('subdimension_descriptions',203)["connection"].'</p>
+                                  <span>CONNECTION</span>
+                                  <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                               </div>
                               <div style="color:#02188d">
-                                  <span>COMPASSION AND EMPATHY ('.$compassionEmpathy.')</span>
-                                  <p>'.get_field('subdimension_descriptions',203)["compassion_and_empathy"].'</p>
+                                  <span>COMPASSION AND EMPATHY</span>
+                                  <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                               </div>
                               <div style="color:#071d9c">
-                                  <span>FORGIVENESS ('.$forgiveness.')</span>
-                                  <p>'.get_field('subdimension_descriptions',203)["forgiveness"].'</p>
+                                  <span>FORGIVENESS</span>
+                                  <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                               </div>
                               <div style="color:#1224ac">
-                                  <span>PURPOSE ('.$purpose.')</span>
-                                  <p>'.get_field('subdimension_descriptions',203)["purpose"].'</p>
+                                  <span>PURPOSE</span>
+                                  <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                               </div>
                               <div style="color:#2733be">
-                                  <span>PRESENCE ('.$presence.')</span>
-                                  <p>'.get_field('subdimension_descriptions',203)["presence"].'</p>
+                                  <span>PRESENCE</span>
+                                  <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
                               </div>
                           </div>
                       </td>
@@ -909,8 +809,15 @@ $email_html .=
             <td class="wrapper">
                 <table>
                     <tr class="marketing-text">
-                        <td width="25%" style="padding:20px;">'.$marketingImages.'</td>
-                        <td width="75%" style="padding:20px;">'.$marketingText.'</td>
+                        <td width="25%" style="padding:20px;">
+                            <img width="300" src="http://localhost:8888/fit-backend/wp-content/themes/_child-master/images/logo.png" alt="fit logo" id="logo">
+                            <img width="300" src="http://localhost:8888/fit-backend/wp-content/themes/_child-master/images/logo.png" alt="fit logo" id="logo">
+                        </td>
+                        <td width="75%" style="padding:20px;">
+                            <h2>Detailed results</h2>
+                            <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
+                            <p>Sed bibendum est noni sit amet justo at sem semper maximus. Donec nec lacinia eros, at fermentum erat. Vivamus fermentum nisl sed tellus malesuada.</p>
+                        </td>
                     </tr>
                 </table>
             </td>
@@ -941,8 +848,4 @@ $email_html .=
       </tr>
     </table>
   </body>
-</html>';
-
-return $email_html;
-
-}
+</html>

@@ -198,8 +198,12 @@ function set_custom_edit_fit_submission_columns($columns) {
 	$columns ['income'] = 'Income';
 	$columns ['height'] = 'Height';
 	$columns ['weight'] = 'Weight';
-	$columns ['occupation'] = 'Occupation';
 	$columns ['marital'] = 'Marital Status';
+	$columns ['language'] = 'Language';
+	$columns ['location'] = 'Location';
+	$columns ['education'] = 'Education';
+	$columns ['ethnicity'] = 'Ethnicity';
+	$columns ['family'] = 'Family';
 
 	$columns ['overall-score'] = 'Overall';
 	$columns ['balance-score'] = 'Balance';
@@ -234,7 +238,7 @@ function set_custom_edit_fit_submission_columns($columns) {
 	$columns ['long-term'] = '(F) Long Term Perspective';
 	$columns ['short-term'] = '(F) Short Term Perspective';
 	$columns ['reduce-sadness'] = '(F) Reduce Sadness';
-	$columns ['increase-hapiness'] = '(F) Increase Hapiness';
+	$columns ['increase-happiness'] = '(F) Increase Happiness';
 	$columns ['non-pecuniary'] = '(F) Non-pecuniary';
 
 	$columns ['connection'] = '(S) Connection';
@@ -272,8 +276,13 @@ function create_new_submission($scores){
 		add_post_meta ( $id, 'income', $scores ['income'] );
 		add_post_meta ( $id, 'height', $scores ['height'] );
 		add_post_meta ( $id, 'weight', $scores ['weight'] );
-		add_post_meta ( $id, 'occupation', $scores ['occupation'] );
 		add_post_meta ( $id, 'marital', $scores ['marital'] );
+		add_post_meta ( $id, 'location', $scores ['location'] );
+		add_post_meta ( $id, 'language', $scores ['language'] );
+		add_post_meta ( $id, 'education', $scores ['education'] );
+		add_post_meta ( $id, 'ethnicity', $scores ['ethnicity'] );
+		add_post_meta ( $id, 'family', $scores ['family'] );
+
 	
 		add_post_meta ( $id, 'learning-strategies', $scores ['learning-strategies'] );
 		add_post_meta ( $id, 'intellectual-engagement', $scores ['intellectual-engagement'] );
@@ -300,7 +309,7 @@ function create_new_submission($scores){
 		add_post_meta ( $id, 'long-term', $scores ['long-term'] );
 		add_post_meta ( $id, 'short-term', $scores ['short-term'] );
 		add_post_meta ( $id, 'reduce-sadness', $scores ['reduce-sadness'] );
-		add_post_meta ( $id, 'increase-hapiness', $scores ['increase-hapiness'] );
+		add_post_meta ( $id, 'increase-happiness', $scores ['increase-happiness'] );
 		add_post_meta ( $id, 'non-pecuniary', $scores ['non-pecuniary'] );
 	
 		add_post_meta ( $id, 'connection', $scores ['connection'] );
@@ -360,17 +369,20 @@ function send_email_callback() {
 	}
 	$data = $_POST['args'];
 
-	$email_html = return_email_template(
-		$data["highest-score"],
-		$data["highest-dim"],
-		$data["lowest-score"],
-		$data["lowest-dim"],
-		$data["overall"],
-		$data["email"],
-		$data["participant"],
-		$data["balance"],
-		$data["urlString"]
-	);
+	$email_html = return_email_template($data);
+	// 	$data["highest-dim"],
+	// 	$data["lowest-dim"],
+	// 	$data["cognitive"],
+	// 	$data["emotional"],
+	// 	$data["physical"],
+	// 	$data["financial"],
+	// 	$data["spiritual"],
+	// 	$data["overall"],
+	// 	$data["email"],
+	// 	$data["participant"],
+	// 	$data["balance"],
+	// 	$data["urlString"],
+	// );
 
 
 	$to = $data["email"];
@@ -380,7 +392,7 @@ function send_email_callback() {
  
 	$sent_email = wp_mail( $to, $subject, $body, $headers );
 
-	echo $email_html;
+	echo 'email sent';
 	die();
 }
 

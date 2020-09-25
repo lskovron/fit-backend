@@ -457,10 +457,43 @@ jQuery(document).ready(function(){
             balance: balance,
             email: rootObj['email'],
             participant: rootObj['participant'],
-            'highest-score': rootObj[highest],
-            'highest-dim': highest.replace('-score',''),
-            'lowest-score': rootObj[lowest],
-            'lowest-dim': lowest.replace('-score',''),
+            'highestDim': highest.replace('-score',''),
+            'lowestDim': lowest.replace('-score',''),
+            cognitive: overallScores['cognitive-score'],
+            emotional: overallScores['emotional-score'],
+            physical: overallScores['physical-score'],
+            financial: overallScores['financial-score'],
+            spiritual: overallScores['spiritual-score'],
+            'activityLevel': rootObj['activity-level'],
+            'aerobicActivity': rootObj['aerobic-activity'],
+            'attention': rootObj['attention'],
+            'autonomy': rootObj['autonomy'],
+            'compassionEmpathy': rootObj['compassion-empathy'],
+            'connection': rootObj['connection'],
+            'currentEmotionalHealth': rootObj['current-emotional-health'],
+            'effortControl': rootObj['effort-control'],
+            'emotionalScore': rootObj['emotional-score'],
+            'financialScore': rootObj['financial-score'],
+            'forgiveness': rootObj['forgiveness'],
+            'gratitudePositivity': rootObj['gratitude-positivity'],
+            'increaseHappiness': rootObj['increase-happiness'],
+            'intellectualEngagement': rootObj['intellectual-engagement'],
+            'learningStrategies': rootObj['learning-strategies'],
+            'mindset': rootObj['mindset'],
+            'nonPecuniary': rootObj['non-pecuniary'],
+            'nutrition': rootObj['nutrition'],
+            'nutritionKnowledge': rootObj['nutrition-knowledge'],
+            'presence': rootObj['presence'],
+            'purpose': rootObj['purpose'],
+            'reduceSadness': rootObj['reduce-sadness'],
+            'selfCompassion': rootObj['self-compassion'],
+            'selfImage': rootObj['self-image'],
+            'shortTerm': rootObj['short-term'],
+            'longTerm': rootObj['long-term'],
+            'sleepHabits': rootObj['sleep-habits'],
+            'socialEngagement': rootObj['social-engagement'],
+            'strengthTraining': rootObj['strength-training'],
+            'stressResilience': rootObj['stress-resilience'],
         } 
 
         return emailData;
@@ -475,7 +508,6 @@ jQuery(document).ready(function(){
     const chartFormatted = generateChartData(chartRaw);
     let emailData = getEmailData(wpPostData);
     emailData.urlString = updateQueryStringParam( 'nodupe', null, true );
-    console.log(emailData);
     
     if( assessmentData.hasOwnProperty('t-overall-score') ) {
         //prepare data
