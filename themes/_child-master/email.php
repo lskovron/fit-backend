@@ -17,7 +17,13 @@ function return_email_template(
 ){
   extract($data);
 
-$marketingText = get_field('marketing_copy',203);
+$emailPage = get_page_by_path( 'email-copy' );
+$emailPageId = $emailPage->ID;
+
+$resultsPage = get_page_by_path( 'results' );
+$resultsPageId = $resultsPage->ID;
+
+$marketingText = get_field('marketing_copy',$emailPageId);
 $marketingImages = '';
 $archUrl = '';
 $archText = '';
@@ -29,66 +35,66 @@ $spiText = '';
 
 $archCode = substr($highestDim, 0, 1).substr($lowestDim, 0, 1);
 
-if( have_rows('marketing_copy_images',203) ):   while ( have_rows('marketing_copy_images',203) ) : the_row();
+if( have_rows('marketing_copy_images',$emailPageId) ):   while ( have_rows('marketing_copy_images',$emailPageId) ) : the_row();
 $marketingImages .= '<img src="'.get_sub_field('image').'" />';
 endwhile; endif;
 
-if(get_field('archetype_images',84)){
-  $archUrl = get_field('archetype_images',84)[$highestDim];
+if(get_field('archetype_images',$resultsPage)){
+  $archUrl = get_field('archetype_images',$resultsPage)[$highestDim];
 }
 
-if(get_field('archetype_text',203)){
-  $archText = get_field('archetype_text',203)[$archCode];
+if(get_field('archetype_text',$emailPageId)){
+  $archText = get_field('archetype_text',$emailPageId)[$archCode];
 }
 
 if( (float)$cognitive < 5 ){
-  $cogText = get_field('dimension_scores',203)['cognitive_5'];
+  $cogText = get_field('dimension_scores',$emailPageId)['cognitive_5'];
 } elseif( (float)$cognitive < 10 ) {
-  $cogText = get_field('dimension_scores',203)['cognitive_5_10'];
+  $cogText = get_field('dimension_scores',$emailPageId)['cognitive_5_10'];
 } elseif( (float)$cognitive < 15 ) {
-  $cogText = get_field('dimension_scores',203)['cognitive_10_15'];
+  $cogText = get_field('dimension_scores',$emailPageId)['cognitive_10_15'];
 } else {
-  $cogText = get_field('dimension_scores',203)['cognitive_15_20'];
+  $cogText = get_field('dimension_scores',$emailPageId)['cognitive_15_20'];
 }
 
 if( (float)$physical < 5 ){
-  $phyText = get_field('dimension_scores',203)['physical_5'];
+  $phyText = get_field('dimension_scores',$emailPageId)['physical_5'];
 } elseif( (float)$physical < 10 ) {
-  $phyText = get_field('dimension_scores',203)['physical_5_10'];
+  $phyText = get_field('dimension_scores',$emailPageId)['physical_5_10'];
 } elseif( (float)$physical < 15 ) {
-  $phyText = get_field('dimension_scores',203)['physical_10_15'];
+  $phyText = get_field('dimension_scores',$emailPageId)['physical_10_15'];
 } else {
-  $phyText = get_field('dimension_scores',203)['physical_15_20'];
+  $phyText = get_field('dimension_scores',$emailPageId)['physical_15_20'];
 }
 
 if( (float)$financial < 5 ){
-  $finText = get_field('dimension_scores',203)['financial_5'];
+  $finText = get_field('dimension_scores',$emailPageId)['financial_5'];
 } elseif( (float)$financial < 10 ) {
-  $finText = get_field('dimension_scores',203)['financial_5_10'];
+  $finText = get_field('dimension_scores',$emailPageId)['financial_5_10'];
 } elseif( (float)$financial < 15 ) {
-  $finText = get_field('dimension_scores',203)['financial_10_15'];
+  $finText = get_field('dimension_scores',$emailPageId)['financial_10_15'];
 } else {
-  $finText = get_field('dimension_scores',203)['financial_15_20'];
+  $finText = get_field('dimension_scores',$emailPageId)['financial_15_20'];
 }
 
 if( (float)$emotional < 5 ){
-  $emoText = get_field('dimension_scores',203)['emotional_5'];
+  $emoText = get_field('dimension_scores',$emailPageId)['emotional_5'];
 } elseif( (float)$emotional < 10 ) {
-  $emoText = get_field('dimension_scores',203)['emotional_5_10'];
+  $emoText = get_field('dimension_scores',$emailPageId)['emotional_5_10'];
 } elseif( (float)$emotional < 15 ) {
-  $emoText = get_field('dimension_scores',203)['emotional_10_15'];
+  $emoText = get_field('dimension_scores',$emailPageId)['emotional_10_15'];
 } else {
-  $emoText = get_field('dimension_scores',203)['emotional_15_20'];
+  $emoText = get_field('dimension_scores',$emailPageId)['emotional_15_20'];
 }
 
 if( (float)$spiritual < 5 ){
-  $spiText = get_field('dimension_scores',203)['spiritual_5'];
+  $spiText = get_field('dimension_scores',$emailPageId)['spiritual_5'];
 } elseif( (float)$spiritual < 10 ) {
-  $spiText = get_field('dimension_scores',203)['spiritual_5_10'];
+  $spiText = get_field('dimension_scores',$emailPageId)['spiritual_5_10'];
 } elseif( (float)$spiritual < 15 ) {
-  $spiText = get_field('dimension_scores',203)['spiritual_10_15'];
+  $spiText = get_field('dimension_scores',$emailPageId)['spiritual_10_15'];
 } else {
-  $spiText = get_field('dimension_scores',203)['spiritual_15_20'];
+  $spiText = get_field('dimension_scores',$emailPageId)['spiritual_15_20'];
 }
 
 
@@ -668,27 +674,27 @@ $email_html .=
                                 <div class="colored-subdimemsions">
                                     <div style="color:#ff3a00">
                                         <span>LEARNING STRATEGIES ('.$learningStrategies.')</span>
-                                        <p>'.get_field('subdimension_descriptions',203)["learning_strategies"].'</p>
+                                        <p>'.get_field('subdimension_descriptions',$emailPageId)["learning_strategies"].'</p>
                                     </div>
                                     <div style="color:#ff4a00">
                                         <span>INTELLECTUAL ENGAGEMENT ('.$intellectualEngagement.')</span>
-                                        <p>'.get_field('subdimension_descriptions',203)["intellectual_engagement"].'</p>
+                                        <p>'.get_field('subdimension_descriptions',$emailPageId)["intellectual_engagement"].'</p>
                                     </div>
                                     <div style="color:#ff5a00">
                                         <span>EFFORTFUL CONTROL ('.$effortControl.')</span>
-                                        <p>'.get_field('subdimension_descriptions',203)["effortful_control"].'</p>
+                                        <p>'.get_field('subdimension_descriptions',$emailPageId)["effortful_control"].'</p>
                                     </div>
                                     <div style="color:#ff6a00">
                                         <span>ATTENTION ('.$attention.')</span>
-                                        <p>'.get_field('subdimension_descriptions',203)["attention"].'</p>
+                                        <p>'.get_field('subdimension_descriptions',$emailPageId)["attention"].'</p>
                                     </div>
                                     <div style="color:#ff7e00">
                                         <span>AUTONOMY ('.$autonomy.')</span>
-                                        <p>'.get_field('subdimension_descriptions',203)["autonomy"].'</p>
+                                        <p>'.get_field('subdimension_descriptions',$emailPageId)["autonomy"].'</p>
                                     </div>
                                     <div style="color:#ff9400">
                                         <span>SOCIAL COGNITION ('.$autonomy.')</span>
-                                        <p>'.get_field('subdimension_descriptions',203)["social_cognition"].'</p>
+                                        <p>'.get_field('subdimension_descriptions',$emailPageId)["social_cognition"].'</p>
                                     </div>
                                 </div>
                             </td>
@@ -721,31 +727,31 @@ $email_html .=
                               <div class="colored-subdimemsions">
                                   <div style="color:#a11500">
                                       <span>NUTRITION ('.$nutrition.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["nutrition"].'</p>
+                                      <p>'.get_field('subdimension_descriptions',$emailPageId)["nutrition"].'</p>
                                   </div>
                                   <div style="color:#b51800">
                                       <span>NUTRITIONAL KNOWLEDGE ('.$nutritionKnowledge.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["nutritional_knowledge"].'</p>
+                                      <p>'.get_field('subdimension_descriptions',$emailPageId)["nutritional_knowledge"].'</p>
                                   </div>
                                   <div style="color:#c01a00">
                                       <span>ACTIVITY LEVEL ('.$activityLevel.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["activity_level"].'</p>
+                                      <p>'.get_field('subdimension_descriptions',$emailPageId)["activity_level"].'</p>
                                   </div>
                                   <div style="color:#cb1c00">
                                       <span>AEROBIC ACTIVITY ('.$aerobicActivity.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["aerobic_activity"].'</p>
+                                      <p>'.get_field('subdimension_descriptions',$emailPageId)["aerobic_activity"].'</p>
                                   </div>
                                   <div style="color:#d72100">
                                       <span>STRENGTH TRAINING ('.$strengthTraining.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["strength_training"].'</p>
+                                      <p>'.get_field('subdimension_descriptions',$emailPageId)["strength_training"].'</p>
                                   </div>
                                   <div style="color:#e43304">
                                       <span>SLEEP HABITS ('.$sleepHabits.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["sleep_habits"].'</p>
+                                      <p>'.get_field('subdimension_descriptions',$emailPageId)["sleep_habits"].'</p>
                                   </div>
                                   <div style="color:#f26b3e">
                                       <span>SELF-IMAGE ('.$selfImage.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["self_image"].'</p>
+                                      <p>'.get_field('subdimension_descriptions',$emailPageId)["self_image"].'</p>
                                   </div>
                               </div>
                           </td>
@@ -778,23 +784,23 @@ $email_html .=
                               <div class="colored-subdimemsions">
                                   <div style="color:#004c00">
                                       <span>LONG-TERM PERSPECTIVE ('.$longTerm.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["long-term_perspective"].'</p>
+                                      <p>'.get_field('subdimension_descriptions',$emailPageId)["long-term_perspective"].'</p>
                                   </div>
                                   <div style="color:#005d00">
                                       <span>SHORT-TERM PERSPECTIVE ('.$shortTerm.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["short-term_perspective"].'</p>
+                                      <p>'.get_field('subdimension_descriptions',$emailPageId)["short-term_perspective"].'</p>
                                   </div>
                                   <div style="color:#006e00">
                                       <span>REDUCE SADNESS ('.$reduceSadness.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["reduce_sadness"].'</p>
+                                      <p>'.get_field('subdimension_descriptions',$emailPageId)["reduce_sadness"].'</p>
                                   </div>
                                   <div style="color:#008200">
                                       <span>INCREASE HAPPINESS ('.$increaseHappiness.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["increase_happiness"].'</p>
+                                      <p>'.get_field('subdimension_descriptions',$emailPageId)["increase_happiness"].'</p>
                                   </div>
                                   <div style="color:#009906">
                                       <span>NON-PECUNIARY ('.$nonPecuniary.')</span>
-                                      <p>'.get_field('subdimension_descriptions',203)["non_pecuniary"].'</p>
+                                      <p>'.get_field('subdimension_descriptions',$emailPageId)["non_pecuniary"].'</p>
                                   </div>
                               </div>
                           </td>
@@ -827,27 +833,27 @@ $email_html .=
                             <div class="colored-subdimemsions">
                                 <div style="color:#00296f">
                                     <span>CURRENT EMOTIONAL HEALTH ('.$currentEmotionalHealth.')</span>
-                                    <p>'.get_field('subdimension_descriptions',203)["current_emotional_health"].'</p>
+                                    <p>'.get_field('subdimension_descriptions',$emailPageId)["current_emotional_health"].'</p>
                                 </div>
                                 <div style="color:#00396f">
                                     <span>SELF-COMPASSION AND EMOTIONAL AWARENESS ('.$selfCompassion.')</span>
-                                    <p>'.get_field('subdimension_descriptions',203)["self_compassion_and_emotional_awareness"].'</p>
+                                    <p>'.get_field('subdimension_descriptions',$emailPageId)["self_compassion_and_emotional_awareness"].'</p>
                                 </div>
                                 <div style="color:#004980">
                                     <span>STRESS RESILIENCE ('.$stressResilience.')</span>
-                                    <p>'.get_field('subdimension_descriptions',203)["stress_resilience"].'</p>
+                                    <p>'.get_field('subdimension_descriptions',$emailPageId)["stress_resilience"].'</p>
                                 </div>
                                 <div style="color:#005f92">
                                     <span>GRATITUDE AND POSITIVITY ('.$gratitudePositivity.')</span>
-                                    <p>'.get_field('subdimension_descriptions',203)["gratitude_and_positivity"].'</p>
+                                    <p>'.get_field('subdimension_descriptions',$emailPageId)["gratitude_and_positivity"].'</p>
                                 </div>
                                 <div style="color:#007aa9">
                                     <span>MINDSET ('.$mindset.')</span>
-                                    <p>'.get_field('subdimension_descriptions',203)["mindset"].'</p>
+                                    <p>'.get_field('subdimension_descriptions',$emailPageId)["mindset"].'</p>
                                 </div>
                                 <div style="color:#009cc1">
                                     <span>SOCIAL ENGAGEMENT ('.$socialEngagement.')</span>
-                                    <p>'.get_field('subdimension_descriptions',203)["social_engagement"].'</p>
+                                    <p>'.get_field('subdimension_descriptions',$emailPageId)["social_engagement"].'</p>
                                 </div>
                             </div>
                         </td>
@@ -880,23 +886,23 @@ $email_html .=
                           <div class="colored-subdimemsions">
                               <div style="color:#01188d">
                                   <span>CONNECTION ('.$connection.')</span>
-                                  <p>'.get_field('subdimension_descriptions',203)["connection"].'</p>
+                                  <p>'.get_field('subdimension_descriptions',$emailPageId)["connection"].'</p>
                               </div>
                               <div style="color:#02188d">
                                   <span>COMPASSION AND EMPATHY ('.$compassionEmpathy.')</span>
-                                  <p>'.get_field('subdimension_descriptions',203)["compassion_and_empathy"].'</p>
+                                  <p>'.get_field('subdimension_descriptions',$emailPageId)["compassion_and_empathy"].'</p>
                               </div>
                               <div style="color:#071d9c">
                                   <span>FORGIVENESS ('.$forgiveness.')</span>
-                                  <p>'.get_field('subdimension_descriptions',203)["forgiveness"].'</p>
+                                  <p>'.get_field('subdimension_descriptions',$emailPageId)["forgiveness"].'</p>
                               </div>
                               <div style="color:#1224ac">
                                   <span>PURPOSE ('.$purpose.')</span>
-                                  <p>'.get_field('subdimension_descriptions',203)["purpose"].'</p>
+                                  <p>'.get_field('subdimension_descriptions',$emailPageId)["purpose"].'</p>
                               </div>
                               <div style="color:#2733be">
                                   <span>PRESENCE ('.$presence.')</span>
-                                  <p>'.get_field('subdimension_descriptions',203)["presence"].'</p>
+                                  <p>'.get_field('subdimension_descriptions',$emailPageId)["presence"].'</p>
                               </div>
                           </div>
                       </td>

@@ -392,7 +392,8 @@ function send_email_callback() {
  
 	$sent_email = wp_mail( $to, $subject, $body, $headers );
 
-	echo 'email sent';
+	var_dump($email_html);
+	// echo 'email sent';
 	die();
 }
 
