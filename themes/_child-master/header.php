@@ -2,6 +2,7 @@
 <html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
+<link rel="icon" href="<?php echo get_stylesheet_directory_uri() ?>/images/favicon.ico" />
 <meta name="viewport" content="width=device-width" />
 <?php wp_head(); ?>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">

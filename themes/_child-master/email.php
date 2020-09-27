@@ -47,51 +47,51 @@ if(get_field('archetype_text',$emailPageId)){
   $archText = get_field('archetype_text',$emailPageId)[$archCode];
 }
 
-if( (float)$cognitive < 5 ){
+if( (float)$cognitive < 25 ){
   $cogText = get_field('dimension_scores',$emailPageId)['cognitive_5'];
-} elseif( (float)$cognitive < 10 ) {
+} elseif( (float)$cognitive < 50 ) {
   $cogText = get_field('dimension_scores',$emailPageId)['cognitive_5_10'];
-} elseif( (float)$cognitive < 15 ) {
+} elseif( (float)$cognitive < 75 ) {
   $cogText = get_field('dimension_scores',$emailPageId)['cognitive_10_15'];
 } else {
   $cogText = get_field('dimension_scores',$emailPageId)['cognitive_15_20'];
 }
 
-if( (float)$physical < 5 ){
+if( (float)$physical < 25 ){
   $phyText = get_field('dimension_scores',$emailPageId)['physical_5'];
-} elseif( (float)$physical < 10 ) {
+} elseif( (float)$physical < 50 ) {
   $phyText = get_field('dimension_scores',$emailPageId)['physical_5_10'];
-} elseif( (float)$physical < 15 ) {
+} elseif( (float)$physical < 75 ) {
   $phyText = get_field('dimension_scores',$emailPageId)['physical_10_15'];
 } else {
   $phyText = get_field('dimension_scores',$emailPageId)['physical_15_20'];
 }
 
-if( (float)$financial < 5 ){
+if( (float)$financial < 25 ){
   $finText = get_field('dimension_scores',$emailPageId)['financial_5'];
-} elseif( (float)$financial < 10 ) {
+} elseif( (float)$financial < 50 ) {
   $finText = get_field('dimension_scores',$emailPageId)['financial_5_10'];
-} elseif( (float)$financial < 15 ) {
+} elseif( (float)$financial < 75 ) {
   $finText = get_field('dimension_scores',$emailPageId)['financial_10_15'];
 } else {
   $finText = get_field('dimension_scores',$emailPageId)['financial_15_20'];
 }
 
-if( (float)$emotional < 5 ){
+if( (float)$emotional < 25 ){
   $emoText = get_field('dimension_scores',$emailPageId)['emotional_5'];
-} elseif( (float)$emotional < 10 ) {
+} elseif( (float)$emotional < 50 ) {
   $emoText = get_field('dimension_scores',$emailPageId)['emotional_5_10'];
-} elseif( (float)$emotional < 15 ) {
+} elseif( (float)$emotional < 75 ) {
   $emoText = get_field('dimension_scores',$emailPageId)['emotional_10_15'];
 } else {
   $emoText = get_field('dimension_scores',$emailPageId)['emotional_15_20'];
 }
 
-if( (float)$spiritual < 5 ){
+if( (float)$spiritual < 25 ){
   $spiText = get_field('dimension_scores',$emailPageId)['spiritual_5'];
-} elseif( (float)$spiritual < 10 ) {
+} elseif( (float)$spiritual < 50 ) {
   $spiText = get_field('dimension_scores',$emailPageId)['spiritual_5_10'];
-} elseif( (float)$spiritual < 15 ) {
+} elseif( (float)$spiritual < 75 ) {
   $spiText = get_field('dimension_scores',$emailPageId)['spiritual_10_15'];
 } else {
   $spiText = get_field('dimension_scores',$emailPageId)['spiritual_15_20'];
@@ -523,7 +523,7 @@ $email_html .= '<!doctype html>
     </style>
   </head>
   <body class="">
-    <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
+    <span class="preheader">Detailed analysis of your FIT Assessment.</span>
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
       <tr>
         <td>&nbsp;</td>
@@ -571,7 +571,7 @@ $email_html .=
 $email_html .= $overall;
 $email_html .= '</span>
                                     <span style="font-weight:300"> / </span>
-                                    <span style="color:#0140c9">20</span>
+                                    <span style="color:#0140c9">100</span>
                                 </h2>
                                 <img width="300px" src="';
 $email_html .= get_site_url();
@@ -663,7 +663,7 @@ $email_html .=
                             <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #ffb100;border-bottom:1px solid #ffb100;">
                                 <h3 class="dim-score">
                                     <span id="cognitive-score" style="color:#ffb100;">'.$cognitive.'</span> 
-                                    out of 20
+                                    out of 100
                                 </h3>
                                 <div class="dim-copy">'.$cogText.'</div>
                             </td>
@@ -716,7 +716,7 @@ $email_html .=
                           <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #f26b3e;border-bottom:1px solid #f26b3e;">
                               <h3 class="dim-score">
                                   <span id="physical-score" style="color:#f26b3e;">'.$physical.'</span> 
-                                  out of 20
+                                  out of 100
                               </h3>
                               <div class="dim-copy">'.$phyText.'</div>
                           </td>
@@ -773,7 +773,7 @@ $email_html .=
                           <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #68d566;border-bottom:1px solid #68d566;">
                               <h3 class="dim-score">
                                   <span id="financial-score" style="color:#68d566;">'.$financial.'</span> 
-                                  out of 20
+                                  out of 100
                               </h3>
                               <div class="dim-copy">'.$finText.'</div>
                           </td>
@@ -822,7 +822,7 @@ $email_html .=
                         <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #08c6de;border-bottom:1px solid #08c6de;">
                             <h3 class="dim-score">
                                 <span id="emotional-score" style="color:#08c6de;">'.$emotional.'</span> 
-                                out of 20
+                                out of 100
                             </h3>
                             <div class="dim-copy">'.$emoText.'</div>
                         </td>
@@ -875,7 +875,7 @@ $email_html .=
                       <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #8e8ee7;border-bottom:1px solid #8e8ee7;">
                           <h3 class="dim-score">
                               <span id="spiritual-score" style="color:#8e8ee7;">'.$spiritual.'</span> 
-                              out of 20
+                              out of 100
                           </h3>
                           <div class="dim-copy">'.$spiText.'</div>
                       </td>
