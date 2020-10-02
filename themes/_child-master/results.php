@@ -167,7 +167,7 @@ $spi_colors = [ //blue
 </div>
 
 
-<h2 class='marketing-header'>Want the full story?</h2>
+<h2 class='marketing-header'>Get your complete results</h2>
 <div class="marketing-copy">
     <?php the_field('marketing_copy'); ?>
 </div>

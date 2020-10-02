@@ -68,7 +68,7 @@ jQuery(document).ready(function(){
           labelFormat: '{name} <span style="opacity: 0.4;">({z})</span>',
           itemStyle: {
               fontSize:"11px"
-          }
+          },
         },
         plotOptions: {
           series: {
@@ -308,7 +308,7 @@ jQuery(document).ready(function(){
                   return {
                     name: label,
                     y: 72/subCount,
-                    z: score
+                    z: parseFloat(score.toFixed(2))
                   }
                 })
                 
@@ -440,11 +440,17 @@ jQuery(document).ready(function(){
 
     const getEmailData = rootObj => {
         let overallScores = {};
+        let sanitizedScores = {};
         let emailData = {};
 
+
+
         Object.keys(rootObj).map((key)=>{
+            if (typeof rootObj[key] === 'number') {
+                sanitizedScores[key] = parseFloat(rootObj[key].toFixed(2));
+            }
             if(key.includes('score') && !key.includes('overall') && !key.includes('balance')){
-                overallScores[key] = rootObj[key]
+                overallScores[key] = parseFloat(rootObj[key].toFixed(2))
             }
         })
 
@@ -453,10 +459,10 @@ jQuery(document).ready(function(){
         const balance = getBalanceScore(overallScores);
 
         emailData = {
-            overall: rootObj['overall-score'],
+            overall: sanitizedScores['overall-score'],
             balance: balance,
-            email: rootObj['email'],
-            participant: rootObj['participant'],
+            email: sanitizedScores['email'],
+            participant: sanitizedScores['participant'],
             'highestDim': highest.replace('-score',''),
             'lowestDim': lowest.replace('-score',''),
             cognitive: overallScores['cognitive-score'],
@@ -464,36 +470,36 @@ jQuery(document).ready(function(){
             physical: overallScores['physical-score'],
             financial: overallScores['financial-score'],
             spiritual: overallScores['spiritual-score'],
-            'activityLevel': rootObj['activity-level'],
-            'aerobicActivity': rootObj['aerobic-activity'],
-            'attention': rootObj['attention'],
-            'autonomy': rootObj['autonomy'],
-            'compassionEmpathy': rootObj['compassion-empathy'],
-            'connection': rootObj['connection'],
-            'currentEmotionalHealth': rootObj['current-emotional-health'],
-            'effortControl': rootObj['effort-control'],
-            'emotionalScore': rootObj['emotional-score'],
-            'financialScore': rootObj['financial-score'],
-            'forgiveness': rootObj['forgiveness'],
-            'gratitudePositivity': rootObj['gratitude-positivity'],
-            'increaseHappiness': rootObj['increase-happiness'],
-            'intellectualEngagement': rootObj['intellectual-engagement'],
-            'learningStrategies': rootObj['learning-strategies'],
-            'mindset': rootObj['mindset'],
-            'nonPecuniary': rootObj['non-pecuniary'],
-            'nutrition': rootObj['nutrition'],
-            'nutritionKnowledge': rootObj['nutrition-knowledge'],
-            'presence': rootObj['presence'],
-            'purpose': rootObj['purpose'],
-            'reduceSadness': rootObj['reduce-sadness'],
-            'selfCompassion': rootObj['self-compassion'],
-            'selfImage': rootObj['self-image'],
-            'shortTerm': rootObj['short-term'],
-            'longTerm': rootObj['long-term'],
-            'sleepHabits': rootObj['sleep-habits'],
-            'socialEngagement': rootObj['social-engagement'],
-            'strengthTraining': rootObj['strength-training'],
-            'stressResilience': rootObj['stress-resilience'],
+            'activityLevel': sanitizedScores['activity-level'],
+            'aerobicActivity': sanitizedScores['aerobic-activity'],
+            'attention': sanitizedScores['attention'],
+            'autonomy': sanitizedScores['autonomy'],
+            'compassionEmpathy': sanitizedScores['compassion-empathy'],
+            'connection': sanitizedScores['connection'],
+            'currentEmotionalHealth': sanitizedScores['current-emotional-health'],
+            'effortControl': sanitizedScores['effort-control'],
+            'emotionalScore': sanitizedScores['emotional-score'],
+            'financialScore': sanitizedScores['financial-score'],
+            'forgiveness': sanitizedScores['forgiveness'],
+            'gratitudePositivity': sanitizedScores['gratitude-positivity'],
+            'increaseHappiness': sanitizedScores['increase-happiness'],
+            'intellectualEngagement': sanitizedScores['intellectual-engagement'],
+            'learningStrategies': sanitizedScores['learning-strategies'],
+            'mindset': sanitizedScores['mindset'],
+            'nonPecuniary': sanitizedScores['non-pecuniary'],
+            'nutrition': sanitizedScores['nutrition'],
+            'nutritionKnowledge': sanitizedScores['nutrition-knowledge'],
+            'presence': sanitizedScores['presence'],
+            'purpose': sanitizedScores['purpose'],
+            'reduceSadness': sanitizedScores['reduce-sadness'],
+            'selfCompassion': sanitizedScores['self-compassion'],
+            'selfImage': sanitizedScores['self-image'],
+            'shortTerm': sanitizedScores['short-term'],
+            'longTerm': sanitizedScores['long-term'],
+            'sleepHabits': sanitizedScores['sleep-habits'],
+            'socialEngagement': sanitizedScores['social-engagement'],
+            'strengthTraining': sanitizedScores['strength-training'],
+            'stressResilience': sanitizedScores['stress-resilience'],
         } 
 
         return emailData;
