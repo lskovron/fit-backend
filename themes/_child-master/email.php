@@ -600,7 +600,7 @@ $email_html .= get_site_url();
 $email_html .= '/wp-content/uploads/2020/09/Screen-Shot-2020-09-16-at-3.39.33-PM.png" />
                                 <br />
                                 <p style="font-weight: 700;color: #576a7c;margin-top: 10px;">View your CircumFIT chart
-                                    <a href="http://results.thefitexperience.com/results/';
+                                    <a href="https://results.thefitexperience.com/results/';
 $email_html .= $urlString;
 $email_html .= '">here</a>
                                 </p>

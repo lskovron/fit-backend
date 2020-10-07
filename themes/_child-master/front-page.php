@@ -8,7 +8,7 @@ get_header();
 <script>
 function buttonClick() {
     // e.preventDefault();
-    window.location = 'http://assessment.thefitexperience.com';
+    window.location = 'https://assessment.thefitexperience.com';
 }
 </script>
     <button id="click-me" onClick="buttonClick()">Take the assessment</button>
