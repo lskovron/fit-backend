@@ -124,6 +124,7 @@ add_action( 'init', 'custom_post_types', 0 );
 add_filter( 'allowed_http_origins', 'add_allowed_origins' );
 function add_allowed_origins( $origins ) {
     $origins[] = 'http://localhost:3000';
+    $origins[] = 'https://assessment.thefitexperience.com';
     return $origins;
 }
 
@@ -131,7 +132,7 @@ function add_cors_http_header(){
     header("Access-Control-Allow-Origin: *");
 }
 add_action('init','add_cors_http_header');
-
+ 
 
 add_filter( 'rest_cognitive_collection_params', 'my_prefix_add_rest_orderby_params', 10, 1 );
 add_filter( 'rest_emotional_collection_params', 'my_prefix_add_rest_orderby_params', 10, 1 );
