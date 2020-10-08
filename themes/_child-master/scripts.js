@@ -461,8 +461,8 @@ jQuery(document).ready(function(){
         emailData = {
             overall: sanitizedScores['overall-score'],
             balance: balance,
-            email: sanitizedScores['email'],
-            participant: sanitizedScores['participant'],
+            email: rootObj['email'],
+            participant: rootObj['participant'],
             'highestDim': highest.replace('-score',''),
             'lowestDim': lowest.replace('-score',''),
             cognitive: overallScores['cognitive-score'],

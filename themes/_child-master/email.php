@@ -754,27 +754,27 @@ $email_html .=
                                       <p>'.get_field('subdimension_descriptions',$emailPageId)["nutrition"].'</p>
                                   </div>
                                   <div style="color:#b51800">
-                                      <span>NUTRITIONAL KNOWLEDGE ('.$nutritionKnowledge.' / 100 / 100)</span>
+                                      <span>NUTRITIONAL KNOWLEDGE ('.$nutritionKnowledge.' / 100)</span>
                                       <p>'.get_field('subdimension_descriptions',$emailPageId)["nutritional_knowledge"].'</p>
                                   </div>
                                   <div style="color:#c01a00">
-                                      <span>ACTIVITY LEVEL ('.$activityLevel.' / 100 / 100)</span>
+                                      <span>ACTIVITY LEVEL ('.$activityLevel.' / 100)</span>
                                       <p>'.get_field('subdimension_descriptions',$emailPageId)["activity_level"].'</p>
                                   </div>
                                   <div style="color:#cb1c00">
-                                      <span>AEROBIC ACTIVITY ('.$aerobicActivity.' / 100 / 100)</span>
+                                      <span>AEROBIC ACTIVITY ('.$aerobicActivity.' / 100)</span>
                                       <p>'.get_field('subdimension_descriptions',$emailPageId)["aerobic_activity"].'</p>
                                   </div>
                                   <div style="color:#d72100">
-                                      <span>STRENGTH TRAINING ('.$strengthTraining.' / 100 / 100)</span>
+                                      <span>STRENGTH TRAINING ('.$strengthTraining.' / 100)</span>
                                       <p>'.get_field('subdimension_descriptions',$emailPageId)["strength_training"].'</p>
                                   </div>
                                   <div style="color:#e43304">
-                                      <span>SLEEP HABITS ('.$sleepHabits.' / 100 / 100)</span>
+                                      <span>SLEEP HABITS ('.$sleepHabits.' / 100)</span>
                                       <p>'.get_field('subdimension_descriptions',$emailPageId)["sleep_habits"].'</p>
                                   </div>
                                   <div style="color:#f26b3e">
-                                      <span>SELF-IMAGE ('.$selfImage.' / 100 / 100)</span>
+                                      <span>SELF-IMAGE ('.$selfImage.' / 100)</span>
                                       <p>'.get_field('subdimension_descriptions',$emailPageId)["self_image"].'</p>
                                   </div>
                               </div>
@@ -807,23 +807,23 @@ $email_html .=
                           <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #68d566;">
                               <div class="colored-subdimemsions">
                                   <div style="color:#004c00">
-                                      <span>LONG-TERM PERSPECTIVE ('.$longTerm.' / 100 / 100)</span>
+                                      <span>LONG-TERM PERSPECTIVE ('.$longTerm.' / 100)</span>
                                       <p>'.get_field('subdimension_descriptions',$emailPageId)["long-term_perspective"].'</p>
                                   </div>
                                   <div style="color:#005d00">
-                                      <span>SHORT-TERM PERSPECTIVE ('.$shortTerm.' / 100 / 100)</span>
+                                      <span>SHORT-TERM PERSPECTIVE ('.$shortTerm.' / 100)</span>
                                       <p>'.get_field('subdimension_descriptions',$emailPageId)["short-term_perspective"].'</p>
                                   </div>
                                   <div style="color:#006e00">
-                                      <span>REDUCE SADNESS ('.$reduceSadness.' / 100 / 100)</span>
+                                      <span>REDUCE SADNESS ('.$reduceSadness.' / 100)</span>
                                       <p>'.get_field('subdimension_descriptions',$emailPageId)["reduce_sadness"].'</p>
                                   </div>
                                   <div style="color:#008200">
-                                      <span>INCREASE HAPPINESS ('.$increaseHappiness.' / 100 / 100)</span>
+                                      <span>INCREASE HAPPINESS ('.$increaseHappiness.' / 100)</span>
                                       <p>'.get_field('subdimension_descriptions',$emailPageId)["increase_happiness"].'</p>
                                   </div>
                                   <div style="color:#009906">
-                                      <span>NON-PECUNIARY ('.$nonPecuniary.' / 100 / 100)</span>
+                                      <span>NON-PECUNIARY ('.$nonPecuniary.' / 100)</span>
                                       <p>'.get_field('subdimension_descriptions',$emailPageId)["non_pecuniary"].'</p>
                                   </div>
                               </div>
@@ -856,27 +856,27 @@ $email_html .=
                         <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #08c6de;">
                             <div class="colored-subdimemsions">
                                 <div style="color:#00296f">
-                                    <span>CURRENT EMOTIONAL HEALTH ('.$currentEmotionalHealth.' / 100 / 100)</span>
+                                    <span>CURRENT EMOTIONAL HEALTH ('.$currentEmotionalHealth.' / 100)</span>
                                     <p>'.get_field('subdimension_descriptions',$emailPageId)["current_emotional_health"].'</p>
                                 </div>
                                 <div style="color:#00396f">
-                                    <span>SELF-COMPASSION AND EMOTIONAL AWARENESS ('.$selfCompassion.' / 100 / 100)</span>
+                                    <span>SELF-COMPASSION AND EMOTIONAL AWARENESS ('.$selfCompassion.' / 100)</span>
                                     <p>'.get_field('subdimension_descriptions',$emailPageId)["self_compassion_and_emotional_awareness"].'</p>
                                 </div>
                                 <div style="color:#004980">
-                                    <span>STRESS RESILIENCE ('.$stressResilience.' / 100 / 100)</span>
+                                    <span>STRESS RESILIENCE ('.$stressResilience.' / 100)</span>
                                     <p>'.get_field('subdimension_descriptions',$emailPageId)["stress_resilience"].'</p>
                                 </div>
                                 <div style="color:#005f92">
-                                    <span>GRATITUDE AND POSITIVITY ('.$gratitudePositivity.' / 100 / 100)</span>
+                                    <span>GRATITUDE AND POSITIVITY ('.$gratitudePositivity.' / 100)</span>
                                     <p>'.get_field('subdimension_descriptions',$emailPageId)["gratitude_and_positivity"].'</p>
                                 </div>
                                 <div style="color:#007aa9">
-                                    <span>MINDSET ('.$mindset.' / 100 / 100)</span>
+                                    <span>MINDSET ('.$mindset.' / 100)</span>
                                     <p>'.get_field('subdimension_descriptions',$emailPageId)["mindset"].'</p>
                                 </div>
                                 <div style="color:#009cc1">
-                                    <span>SOCIAL ENGAGEMENT ('.$socialEngagement.' / 100 / 100)</span>
+                                    <span>SOCIAL ENGAGEMENT ('.$socialEngagement.' / 100)</span>
                                     <p>'.get_field('subdimension_descriptions',$emailPageId)["social_engagement"].'</p>
                                 </div>
                             </div>
@@ -909,23 +909,23 @@ $email_html .=
                       <td width="75%" style="text-align:left;padding: 20px;border-left:1px solid #8e8ee7;">
                           <div class="colored-subdimemsions">
                               <div style="color:#01188d">
-                                  <span>CONNECTION ('.$connection.' / 100 / 100)</span>
+                                  <span>CONNECTION ('.$connection.' / 100)</span>
                                   <p>'.get_field('subdimension_descriptions',$emailPageId)["connection"].'</p>
                               </div>
                               <div style="color:#02188d">
-                                  <span>COMPASSION AND EMPATHY ('.$compassionEmpathy.' / 100 / 100)</span>
+                                  <span>COMPASSION AND EMPATHY ('.$compassionEmpathy.' / 100)</span>
                                   <p>'.get_field('subdimension_descriptions',$emailPageId)["compassion_and_empathy"].'</p>
                               </div>
                               <div style="color:#071d9c">
-                                  <span>FORGIVENESS ('.$forgiveness.' / 100 / 100)</span>
+                                  <span>FORGIVENESS ('.$forgiveness.' / 100)</span>
                                   <p>'.get_field('subdimension_descriptions',$emailPageId)["forgiveness"].'</p>
                               </div>
                               <div style="color:#1224ac">
-                                  <span>PURPOSE ('.$purpose.' / 100 / 100)</span>
+                                  <span>PURPOSE ('.$purpose.' / 100)</span>
                                   <p>'.get_field('subdimension_descriptions',$emailPageId)["purpose"].'</p>
                               </div>
                               <div style="color:#2733be">
-                                  <span>PRESENCE ('.$presence.' / 100 / 100)</span>
+                                  <span>PRESENCE ('.$presence.' / 100)</span>
                                   <p>'.get_field('subdimension_descriptions',$emailPageId)["presence"].'</p>
                               </div>
                           </div>

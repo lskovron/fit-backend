@@ -176,7 +176,7 @@ $spi_colors = [ //blue
 
 <h4 class="send-results">Send results to <span id="email-address"></span></h4>
 <div style="text-align:center;padding:15px 0;">
-    <button id="send-email">Email me my results!</button>
+    <button id="send-email">Email my results!</button>
     <p id="thank-you-email" style="padding-top:10px;display:none;max-width: 500px;margin: 10px auto;">Thank you for submitting. You'll be receiving an email shortly outlining your scores and what they mean. We are excited to be a part of your journey toward becoming FIT in 5D!</p>
 </div>
 </div>
