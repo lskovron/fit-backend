@@ -181,6 +181,7 @@ $email_html .= '<!doctype html>
       ------------------------------------- */
       .main {
         background: #ffffff;
+        background-image: linear-gradient(#ffffff,#ffffff);
         border-radius: 3px;
         width: 100%; 
       }
@@ -284,11 +285,13 @@ $email_html .= '<!doctype html>
       }
         .btn table td {
           background-color: #ffffff;
+          background-image: linear-gradient(#ffffff,#ffffff);
           border-radius: 5px;
           text-align: center; 
       }
         .btn a {
           background-color: #ffffff;
+          background-image: linear-gradient(#ffffff,#ffffff);
           border: solid 1px #3498db;
           border-radius: 5px;
           box-sizing: border-box;
@@ -311,6 +314,7 @@ $email_html .= '<!doctype html>
         background-color: #3498db;
         border-color: #3498db;
         color: #ffffff; 
+        -webkit-text-fill-color: #000000 !important;
       }
 
       /* -------------------------------------
@@ -413,6 +417,15 @@ $email_html .= '<!doctype html>
           height: auto !important;
           max-width: 100% !important;
           width: auto !important; 
+        }
+        .imgRow {
+          display: block;
+        }
+        .imgRow img {
+          display: none;
+        }
+        .imgRow span {
+          text-align: right;
         }
       }
 
@@ -533,6 +546,7 @@ $email_html .= '<!doctype html>
         padding: 11px 35px;
         border-radius: 20px;
         color: white;
+        -webkit-text-fill-color: #000000 !important;
         text-transform: none;
         font-weight: 700;
         background: #79bdf2;
